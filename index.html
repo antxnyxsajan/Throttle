@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THROTTLE '26 | Hackathon & CTF</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- CRT Overlay & Vignette -->
+    <div id="crt-overlay"></div>
+    <div id="vignette"></div>
+
+    <!-- Custom Cursor -->
+    <div id="custom-cursor">█</div>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="glass-panel">
+        <div class="nav-brand">
+            < THROTTLE />
+        </div>
+        <div class="nav-links">
+            <a href="#boot">HOME</a>
+            <a href="#breach">ABOUT</a>
+            <a href="#tracks">TRACKS</a>
+            <a href="#timeline">TIMELINE</a>
+            <a href="#location">LOCATION</a>
+            <a href="#sponsors">SPONSORS</a>
+            <a href="#shutdown" class="nav-cta">REGISTER</a>
+        </div>
+    </nav>
+
+    <!-- Boot Sequence -->
+    <section id="boot" class="fullscreen-section">
+        <div class="content-wrapper">
+            <div class="terminal-window">
+                <div id="main-title">
+                    <h1 class="glitch-text" data-text="< THROTTLE />">
+                        < THROTTLE />
+                    </h1>
+                    <p class="subtitle">'26</p>
+                    <div class="stats-readout">
+                        <span class="stat">> UPTIME: 16 HRS NON-STOP</span>
+                        <span class="stat">> NODES: 150+ PARTICIPANTS</span>
+                        <span class="stat">> SCOPE: INTRA-COLLEGE</span>
+                    </div>
+                    <div class="countdown" id="countdown-timer">
+                        <span class="time-block" id="days">00</span><span class="colon">:</span>
+                        <span class="time-block" id="hours">00</span><span class="colon">:</span>
+                        <span class="time-block" id="minutes">00</span><span class="colon">:</span>
+                        <span class="time-block" id="seconds">00</span>
+                    </div>
+                    <div class="meta-info">
+                        <p>ORGANIZED_BY: Hack Club RSET</p>
+                        <p>DATE: 11TH SEPTEMBER 2026</p>
+                    </div>
+                    <div class="scroll-prompt blinking">SCROLL TO CONTINUE...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breach (About) -->
+    <section id="breach" class="content-wrapper content-section fade-in">
+        <div class="section-header">
+            <span class="eyebrow">>_ 01. INTRODUCTION</span>
+            <div class="header-with-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <h2 class="glitch-text" data-text="WHO ARE WE?">WHO ARE WE?</h2>
+            </div>
+        </div>
+        <div class="decrypted-file glass-panel">
+            <p>Hack Club RSET is a student-led tech community under the global Hack Club network — empowering students
+                to learn, build and innovate through technology.</p>
+            <p>Focused on hands-on learning and open collaboration — exploring coding, cybersecurity, AI and emerging
+                technologies through hackathons, workshops, projects and community-driven events.</p>
+        </div>
+
+        <div class="section-header mt-4">
+            <span class="eyebrow">>_ 03. THE EVENT</span>
+            <div class="header-with-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <h2 class="glitch-text" data-text="WHAT IS THROTTLE">WHAT IS THROTTLE</h2>
+            </div>
+        </div>
+        <div class="terminal-block glass-panel">
+            <p>THROTTLE is a 16-hour overnight tech experience where innovation meets collaboration through hackathons,
+                CTFs and AI-driven challenges.</p>
+            <p>Participants spend 16 hours building innovative projects, solving challenges, exploring emerging
+                technologies, and connecting with like-minded innovators.</p>
+        </div>
+
+        <div class="capabilities-json glass-panel mt-4">
+            <div class="json-key">"event_highlights": [</div>
+            <div class="json-value">"16 Hours of Non-Stop Innovation",</div>
+            <div class="json-value">"Hackathon, CTF & AI-Powered Challenges",</div>
+            <div class="json-value">"Intra-College Competition",</div>
+            <div class="json-value">"Expert Mentorship & Collaboration",</div>
+            <div class="json-value">"Networking, Activities & Overnight Tech Culture"</div>
+            <div class="json-key">]</div>
+        </div>
+    </section>
+
+    <!-- Tracks Split Screen -->
+    <section id="tracks" class="fade-in content-wrapper">
+        <div class="tracks-container glass-panel">
+            <div class="track left-track break-in">
+                <div class="track-content">
+                    <span class="eyebrow-red">:: 04. TRACKS</span>
+                    <div class="header-with-icon">
+                        <svg class="icon red-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        <h2>BREAK//IN</h2>
+                    </div>
+                    <p class="track-desc">Cybersecurity & CTF</p>
+                    <ul class="process-list">
+                        <li>$ ps aux | grep web_exploitation</li>
+                        <li>$ ps aux | grep cryptography</li>
+                        <li>$ ps aux | grep osint</li>
+                        <li>$ ps aux | grep forensics</li>
+                        <li>$ ps aux | grep reverse_engineering</li>
+                    </ul>
+                    <p class="custom-note">Custom challenges available</p>
+                </div>
+            </div>
+            <div class="laser-divider"></div>
+            <div class="track right-track build-out">
+                <div class="track-content">
+                    <span class="eyebrow-cyan">:: 04. TRACKS</span>
+                    <div class="header-with-icon">
+                        <svg class="icon cyan-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                            <path d="M2 12h20"></path>
+                        </svg>
+                        <h2>BUILD//OUT</h2>
+                    </div>
+                    <p class="track-desc">Hackathon / Product Engineering</p>
+                    <ul class="process-list">
+                        <li>$ ps aux | grep ai</li>
+                        <li>$ ps aux | grep web_development</li>
+                        <li>$ ps aux | grep fintech</li>
+                        <li>$ ps aux | grep social_impact</li>
+                        <li>$ ps aux | grep developer_tools</li>
+                    </ul>
+                    <p class="custom-note">Custom challenges available</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Log (Timeline & Venue) -->
+    <section id="timeline" class="content-wrapper content-section fade-in">
+        <div class="section-header">
+            <span class="eyebrow">>_ 05. MORE THAN A HACKATHON</span>
+            <div class="header-with-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <h2 class="glitch-text" data-text="SYSTEM LOG">SYSTEM LOG</h2>
+            </div>
+        </div>
+        <div class="log-container glass-panel" id="sys-log">
+            <div class="log-line"><span class="timestamp">[TBD_TIME]</span> <span class="log-msg">STATUS: Venue RSET
+                    Kakkanad online.</span></div>
+            <div class="log-line"><span class="timestamp">[TBD_TIME]</span> <span class="log-msg">EVENT: Glitch Hour
+                    initiated.</span></div>
+            <div class="log-line"><span class="timestamp">[TBD_TIME]</span> <span class="log-msg">EVENT: Karaoke Corner
+                    unlocked.</span></div>
+            <div class="log-line"><span class="timestamp">[TBD_TIME]</span> <span class="log-msg">EVENT: Polaroid Memory
+                    Wall active.</span></div>
+            <div class="log-line"><span class="timestamp">[TBD_TIME]</span> <span class="log-msg">EVENT: Sunrise Chai &
+                    Midnight Snacks deployed.</span></div>
+        </div>
+    </section>
+
+    <!-- Location -->
+    <section id="location" class="content-wrapper content-section fade-in">
+        <div class="section-header">
+            <span class="eyebrow">>_ VENUE</span>
+            <div class="header-with-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <h2 class="glitch-text" data-text="LOCATION">LOCATION</h2>
+            </div>
+        </div>
+        <div class="venue-block glass-panel">
+            <span class="eyebrow">LOCATION DATA</span>
+            <div class="venue-content">
+                <div class="geolocate-data">
+                    <p>building: Rajagiri School of Engineering & Technology</p>
+                    <p>location: Kakkanad, Kochi, Kerala 682039</p>
+                    <p>room: [TBD]</p>
+                    <p>map_coordinates: [TBD]</p>
+                </div>
+                <div class="map-embed">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.155700778842!2d76.35334251479417!3d10.004245992848386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080c058fffffff%3A0x2d1a3b9347898555!2sRajagiri%20School%20of%20Engineering%20%26%20Technology%20(Autonomous)!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin"
+                        width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsors -->
+    <section id="sponsors" class="content-wrapper content-section fade-in">
+        <div class="section-header">
+            <span class="eyebrow">>_ ALLIES</span>
+            <div class="header-with-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="3" y1="9" x2="21" y2="9"></line>
+                    <line x1="9" y1="21" x2="9" y2="9"></line>
+                </svg>
+                <h2 class="glitch-text" data-text="SPONSORS">SPONSORS</h2>
+            </div>
+        </div>
+
+        <h3 class="sponsor-tier-title">PLATINUM</h3>
+        <div class="sponsors-grid platinum-grid">
+            <div class="sponsor-card platinum glass-panel">
+                <div class="sponsor-logo">[TBD LOGO]</div>
+            </div>
+        </div>
+
+        <h3 class="sponsor-tier-title mt-4">ASSOCIATE</h3>
+        <div class="sponsors-grid associate-grid">
+            <div class="sponsor-card associate glass-panel">
+                <div class="sponsor-logo">[TBD LOGO]</div>
+            </div>
+            <div class="sponsor-card associate glass-panel">
+                <div class="sponsor-logo">[TBD LOGO]</div>
+            </div>
+        </div>
+
+        <!-- Payload (Prizes) -->
+        <section id="payload" class="content-wrapper content-section fade-in">
+            <div class="section-header">
+                <span class="eyebrow">>_ PAYLOAD</span>
+                <div class="header-with-icon">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon
+                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </polygon>
+                    </svg>
+                    <h2 class="glitch-text" data-text="REWARDS">REWARDS</h2>
+                </div>
+            </div>
+            <div class="prize-grid">
+                <div class="prize-card glass-panel">
+                    <h3>BREAK//IN WINNER</h3>
+                    <div class="prize-amount decrypt" data-target="[TBD]">₹#####</div>
+                </div>
+                <div class="prize-card glass-panel">
+                    <h3>BUILD//OUT WINNER</h3>
+                    <div class="prize-amount decrypt" data-target="[TBD]">₹#####</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shutdown (Footer) -->
+        <section id="shutdown" class="content-wrapper content-section">
+            <div class="terminal-prompt glass-panel">
+                <p class="warning-text">SESSION ENDING IN [TBD]...</p>
+                <p>CONFIRM REGISTRATION?</p>
+                <div class="reg-options">
+                    <a href="#" class="reg-btn ctf-reg">[Y] BREAK//IN (CTF)</a>
+                    <a href="#" class="reg-btn hack-reg">[Y] BUILD//OUT (HACK)</a>
+                    <a href="#" class="reg-btn no-reg" id="btn-decline">[N] ABORT</a>
+                </div>
+                <p id="decline-msg" class="hidden error-text">UNAUTHORIZED ABORT. REROUTING...</p>
+            </div>
+            <div class="footer-meta">
+                <p>contact: hackclub@rajagiritech.edu.in</p>
+                <p>instagram: @hackclubrset</p>
+                <p>linkedin: /company/hack-club-rset</p>
+            </div>
+        </section>
+
+        <script src="script.js"></script>
+</body>
+
+</html>
