@@ -25,16 +25,15 @@
 
     <!-- Navbar -->
     <nav id="navbar" class="glass-panel">
-        <div class="nav-brand">
+        <a href="#boot" class="nav-brand" style="text-decoration: none;">
             < THROTTLE />
-        </div>
+        </a>
         <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle Navigation">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M6 9l6 6 6-6"/>
+                <path d="M6 9l6 6 6-6" />
             </svg>
         </button>
         <div class="nav-links" id="nav-links">
-            <a href="#boot">HOME</a>
             <a href="#breach">ABOUT</a>
             <a href="#tracks">TRACKS</a>
             <a href="#timeline">TIMELINE</a>
@@ -49,14 +48,24 @@
         <div class="content-wrapper">
             <div class="terminal-window">
                 <div id="main-title">
-                    <h1 class="glitch-text" data-text="< THROTTLE />">
-                        < THROTTLE />
-                    </h1>
+                    <div class="desktop-only-title">
+                        <h1 class="glitch-text" data-text="< THROTTLE />">
+                            < THROTTLE />
+                        </h1>
+                    </div>
+                    <div class="mobile-only-title">
+                        <h1 class="glitch-text" data-text="<">&lt;</h1>
+                        <h1 class="glitch-text" data-text="THROTTLE">THROTTLE</h1>
+                        <h1 class="glitch-text" data-text="/>">/&gt;</h1>
+                    </div>
                     <p class="subtitle">'26</p>
                     <div class="stats-readout">
-                        <span class="stat">> UPTIME: 16 HRS NON-STOP</span>
-                        <span class="stat">> NODES: 150+ PARTICIPANTS</span>
-                        <span class="stat">> SCOPE: INTRA-COLLEGE</span>
+                        <div class="stat"><span class="stat-label">> UPTIME:</span> <span class="stat-value">16 HRS
+                                NON-STOP</span></div>
+                        <div class="stat"><span class="stat-label">> TARGET_DATE:</span> <span class="stat-value">SEP
+                                11-12, 2026</span></div>
+                        <div class="stat"><span class="stat-label">> LOCATION:</span> <span class="stat-value">RSET,
+                                KOCHI</span></div>
                     </div>
                     <div class="countdown" id="countdown-timer">
                         <span class="time-block" id="days">00</span><span class="colon">:</span>
@@ -66,9 +75,7 @@
                     </div>
                     <div class="meta-info">
                         <p>ORGANIZED_BY: Hack Club RSET</p>
-                        <p>DATE: 11TH SEPTEMBER 2026</p>
                     </div>
-                    <div class="scroll-prompt blinking">SCROLL TO CONTINUE...</div>
                 </div>
             </div>
         </div>
@@ -88,7 +95,7 @@
             </div>
         </div>
         <div class="decrypted-file glass-panel">
-            <p>Hack Club RSET is a student-led tech community under the global Hack Club network — empowering students
+            <p>Hack Club RSET is a student-led tech community of RSET — empowering students
                 to learn, build and innovate through technology.</p>
             <p>Focused on hands-on learning and open collaboration — exploring coding, cybersecurity, AI and emerging
                 technologies through hackathons, workshops, projects and community-driven events.</p>
@@ -105,19 +112,20 @@
         </div>
         <div class="terminal-block glass-panel">
             <p>THROTTLE is a 16-hour overnight tech experience where innovation meets collaboration through hackathons,
-                CTFs and AI-driven challenges.</p>
+                CTFs and other challenges.</p>
             <p>Participants spend 16 hours building innovative projects, solving challenges, exploring emerging
                 technologies, and connecting with like-minded innovators.</p>
         </div>
 
-        <div class="capabilities-json glass-panel mt-4">
-            <div class="json-key">"event_highlights": [</div>
-            <div class="json-value">"16 Hours of Non-Stop Innovation",</div>
-            <div class="json-value">"Hackathon, CTF & AI-Powered Challenges",</div>
-            <div class="json-value">"Intra-College Competition",</div>
-            <div class="json-value">"Expert Mentorship & Collaboration",</div>
-            <div class="json-value">"Networking, Activities & Overnight Tech Culture"</div>
-            <div class="json-key">]</div>
+        <div class="event-highlights glass-panel mt-4">
+            <h3 class="highlight-heading">EVENT HIGHLIGHTS</h3>
+            <ul class="highlight-list">
+                <li>16 Hours of Non-Stop Innovation</li>
+                <li>Hackathon, CTF & AI-Powered Challenges</li>
+                <li>Intra-College Competition</li>
+                <li>Expert Mentorship & Collaboration</li>
+                <li>Networking, Activities & Overnight Tech Culture</li>
+            </ul>
         </div>
     </section>
 
@@ -126,7 +134,7 @@
         <div class="tracks-container glass-panel">
             <div class="track left-track break-in">
                 <div class="track-content">
-                    <span class="eyebrow-red">:: TRACKS</span>
+                    <span class="eyebrow-red">:: TRACK 01</span>
                     <div class="header-with-icon">
                         <svg class="icon red-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
@@ -137,11 +145,11 @@
                     </div>
                     <p class="track-desc">Cybersecurity & CTF</p>
                     <ul class="process-list">
-                        <li>$ ps aux | grep web_exploitation</li>
-                        <li>$ ps aux | grep cryptography</li>
-                        <li>$ ps aux | grep osint</li>
-                        <li>$ ps aux | grep forensics</li>
-                        <li>$ ps aux | grep reverse_engineering</li>
+                        <li>WEB EXPLOITATION</li>
+                        <li>CRYPTOGRAPHY</li>
+                        <li>OSINT</li>
+                        <li>FORENSICS</li>
+                        <li>REVERSE_ENGINEERING</li>
                     </ul>
                     <p class="custom-note">Custom challenges available</p>
                 </div>
@@ -149,7 +157,7 @@
             <div class="laser-divider"></div>
             <div class="track right-track build-out">
                 <div class="track-content">
-                    <span class="eyebrow-cyan">:: TRACKS</span>
+                    <span class="eyebrow-cyan">:: TRACK 02</span>
                     <div class="header-with-icon">
                         <svg class="icon cyan-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
@@ -161,11 +169,11 @@
                     </div>
                     <p class="track-desc">Hackathon / Product Engineering</p>
                     <ul class="process-list">
-                        <li>$ ps aux | grep ai</li>
-                        <li>$ ps aux | grep web_development</li>
-                        <li>$ ps aux | grep fintech</li>
-                        <li>$ ps aux | grep social_impact</li>
-                        <li>$ ps aux | grep developer_tools</li>
+                        <li>AI</li>
+                        <li>WEB DEVELOPMENT</li>
+                        <li>FINTECH</li>
+                        <li>SOCIAL_IMPACT</li>
+                        <li>DEVELOPER_TOOLS</li>
                     </ul>
                     <p class="custom-note">Custom challenges available</p>
                 </div>
@@ -214,16 +222,15 @@
             <span class="eyebrow">LOCATION DATA</span>
             <div class="venue-content">
                 <div class="geolocate-data">
-                    <p>building: Rajagiri School of Engineering & Technology</p>
-                    <p>location: Kakkanad, Kochi, Kerala 682039</p>
-                    <p>room: [TBD]</p>
-                    <p>map_coordinates: [TBD]</p>
+                    <h3 class="venue-name">RAJAGIRI SCHOOL OF ENGINEERING & TECHNOLOGY</h3>
+                    <p>Kakkanad, Kochi, Kerala 682039</p>
                 </div>
                 <div class="map-embed">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.155700778842!2d76.35334251479417!3d10.004245992848386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080c058fffffff%3A0x2d1a3b9347898555!2sRajagiri%20School%20of%20Engineering%20%26%20Technology%20(Autonomous)!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6608.201279801691!2d76.35356539534659!3d9.9953699000892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080ca6b98ae0f7%3A0xc81786bb40617774!2sRajagiri%20School%20of%20Engineering%20%26%20Technology!5e0!3m2!1sen!2sin!4v1788086255292!5m2!1sen!2sin"
                         width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
             </div>
         </div>
