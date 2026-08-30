@@ -297,40 +297,79 @@ a {
   white-space: pre-line;
 }
 
-.stats-readout {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin: 2rem 0;
-  color: var(--ghost-white);
+.desktop-only-title {
+  display: block;
 }
 
-.countdown {
+.mobile-only-title {
+  display: none;
+}
+
+.terminal-window {
+  text-align: center;
   display: flex;
-  gap: 0.5rem;
-  margin: 1.5rem 0;
-  font-size: 1.8rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stats-readout {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin: 3rem 0;
+}
+
+.stat {
+  font-size: 1.1rem;
+}
+
+.stat-label {
   color: var(--corrupt-cyan);
-  font-family: var(--font-mono);
-  text-shadow: 0 0 10px rgba(42, 245, 216, 0.5);
+}
+
+.stat-value {
+  color: var(--ghost-white);
   font-weight: bold;
 }
 
-.colon {
-  animation: blink 1s infinite;
-}
-
 .meta-info {
+  margin-top: 1.5rem;
   margin-bottom: 3rem;
   font-size: 0.95rem;
   color: var(--ghost-white);
 }
 
-.scroll-prompt {
-  position: absolute;
-  bottom: 2rem;
-  left: 2rem;
-  color: var(--signal-red-dim);
+.countdown {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 0 2rem 0;
+  font-family: var(--font-mono);
+  font-weight: bold;
+}
+
+.time-block {
+  background: rgba(21, 21, 23, 0.7);
+  border: 1px solid rgba(42, 245, 216, 0.3);
+  box-shadow: 0 0 15px rgba(42, 245, 216, 0.15), inset 0 0 10px rgba(42, 245, 216, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 2.5rem;
+  color: var(--corrupt-cyan);
+  text-shadow: 0 0 15px rgba(42, 245, 216, 0.5);
+  min-width: 90px;
+  display: flex;
+  justify-content: center;
+}
+
+.colon {
+  font-size: 2.5rem;
+  color: var(--ghost-white);
+  animation: blink 1.5s infinite;
+  margin: 0 -0.2rem;
 }
 
 /* Glitch Typography Effects */
@@ -470,19 +509,34 @@ a {
   font-size: 0.7rem;
 }
 
-.capabilities-json {
+.event-highlights {
   font-size: 0.95rem;
   color: var(--ghost-white);
 }
 
-.json-value {
-  padding-left: 2rem;
+.highlight-heading {
+  color: var(--corrupt-cyan);
+  margin-bottom: 2rem;
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(42, 245, 216, 0.4);
+}
+
+.highlight-list {
+  list-style-type: none;
+  padding-left: 1rem;
+}
+
+.highlight-list li {
+  margin-bottom: 0.5rem;
   color: var(--ghost-white);
 }
 
-.json-value::before {
-  content: "» ";
-  color: var(--signal-red-dim);
+.highlight-list li::before {
+  content: "> ";
+  color: var(--corrupt-cyan); /* Matches the theme better, or user requested "the > ones we are already using" which usually are cyan in geolocate or stats */
 }
 
 /* Tracks Split Screen */
@@ -538,6 +592,18 @@ a {
   margin-bottom: 0.5rem;
   color: var(--ghost-white);
   font-size: 0.95rem;
+}
+
+.process-list li::before {
+  content: "$ ";
+}
+
+.break-in .process-list li::before {
+  color: var(--signal-red);
+}
+
+.build-out .process-list li::before {
+  color: var(--corrupt-cyan);
 }
 
 .custom-note {
@@ -598,14 +664,20 @@ a {
 
 .venue-content {
   display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .geolocate-data {
-  flex: 1;
-  min-width: 250px;
+  width: 100%;
+}
+
+.venue-name {
+  color: var(--ghost-white);
+  font-size: 1.4rem;
+  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
 .geolocate-data p {
@@ -619,8 +691,7 @@ a {
 }
 
 .map-embed {
-  flex: 1;
-  min-width: 250px;
+  width: 100%;
   border: 1px solid rgba(42, 245, 216, 0.3);
   box-shadow: 0 0 15px rgba(42, 245, 216, 0.1);
   filter: grayscale(80%) contrast(1.2);
@@ -873,9 +944,49 @@ a {
     font-size: clamp(1.2rem, 6vw, 2rem);
   }
 
+  .desktop-only-title {
+    display: none;
+  }
+
+  .mobile-only-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .mobile-only-title h1 {
+    font-size: clamp(3rem, 14vw, 5.5rem); /* Make it a bit smaller */
+    line-height: 1;
+    margin: -0.2rem 0; /* Tighten line spacing */
+  }
+
+  .terminal-window {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .stats-readout {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin: 2rem 0;
+  }
+
   .countdown {
-    font-size: 1.4rem;
+    justify-content: flex-start;
     gap: 0.4rem;
+  }
+
+  .time-block {
+    min-width: 60px;
+    padding: 0.8rem;
+    font-size: 1.5rem;
+  }
+
+  .colon {
+    font-size: 1.5rem;
   }
 
   .process-list li {
