@@ -436,7 +436,6 @@ a {
 /* Breach Section Text Blocks */
 .decrypted-file,
 .terminal-block {
-  max-width: 800px;
   position: relative;
 }
 
