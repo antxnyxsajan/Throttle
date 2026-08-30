@@ -41,6 +41,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 menuBtn.classList.remove('open');
             });
         });
+
+        // Close menu when tapping outside the navbar
+        document.addEventListener('click', (e) => {
+            const navbar = document.getElementById('navbar');
+            if (navbar && !navbar.contains(e.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                menuBtn.classList.remove('open');
+            }
+        });
     }
 
 
