@@ -21,8 +21,24 @@ document.addEventListener('DOMContentLoaded', () => {
             cursor.style.color = "var(--signal-red)";
         });
     });
+    // --- Mobile Menu Toggle ---
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const navLinks = document.getElementById('nav-links');
+    
+    if (menuBtn && navLinks) {
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuBtn.classList.toggle('open');
+        });
 
-
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuBtn.classList.remove('open');
+            });
+        });
+    }
 
 
     // --- Scroll Animations (Intersection Observer) ---
