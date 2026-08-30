@@ -103,10 +103,6 @@ a {
   text-shadow: 0 0 5px var(--signal-red);
 }
 
-#custom-cursor.active {
-  content: ">_";
-}
-
 /* CRT Scanline & Vignette Backgrounds */
 #crt-overlay {
   position: fixed;
@@ -291,12 +287,6 @@ a {
 }
 
 /* Boot Sequence */
-#boot-text {
-  color: var(--ghost-white);
-  margin-bottom: 2rem;
-  white-space: pre-line;
-}
-
 .stats-readout {
   display: flex;
   flex-direction: column;
@@ -422,28 +412,25 @@ a {
 }
 
 /* Micro-labels / Eyebrows */
-.eyebrow {
+.eyebrow,
+.eyebrow-red,
+.eyebrow-cyan {
   display: block;
-  color: var(--ghost-white);
   margin-bottom: 0.5rem;
   letter-spacing: 2px;
   font-size: 0.85rem;
+}
+
+.eyebrow {
+  color: var(--ghost-white);
 }
 
 .eyebrow-red {
   color: var(--signal-red);
-  display: block;
-  margin-bottom: 0.5rem;
-  letter-spacing: 2px;
-  font-size: 0.85rem;
 }
 
 .eyebrow-cyan {
   color: var(--corrupt-cyan);
-  display: block;
-  margin-bottom: 0.5rem;
-  letter-spacing: 2px;
-  font-size: 0.85rem;
 }
 
 /* Breach Section Text Blocks */
@@ -502,10 +489,6 @@ a {
   justify-content: center;
 }
 
-.break-in {
-  /* background handled by glass-panel wrapper */
-}
-
 .break-in h2 {
   color: var(--signal-red);
 }
@@ -513,10 +496,6 @@ a {
 .break-in .track-desc {
   color: var(--ghost-white);
   font-weight: bold;
-}
-
-.build-out {
-  /* background handled by glass-panel wrapper */
 }
 
 .build-out h2 {
