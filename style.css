@@ -611,6 +611,47 @@ a {
   color: var(--ghost-white);
   font-style: italic;
   opacity: 0.8;
+  margin-top: 1rem;
+}
+
+/* Track Meta Info */
+.track-meta {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--ghost-white);
+  font-size: 1rem;
+  font-family: var(--font-mono);
+  font-weight: bold;
+}
+
+.meta-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.break-in .meta-icon {
+  color: var(--signal-red);
+  filter: drop-shadow(0 0 5px rgba(255, 42, 60, 0.4));
+}
+
+.build-out .meta-icon {
+  color: var(--corrupt-cyan);
+  filter: drop-shadow(0 0 5px rgba(42, 245, 216, 0.4));
 }
 
 /* Laser Divider */
@@ -838,6 +879,13 @@ a {
 @media (max-width: 768px) {
   .tracks-container {
     flex-direction: column;
+  }
+
+  .track-meta {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
   }
 
   .associate-grid {
