@@ -103,10 +103,6 @@ a {
   text-shadow: 0 0 5px var(--signal-red);
 }
 
-#custom-cursor.active {
-  content: ">_";
-}
-
 /* CRT Scanline & Vignette Backgrounds */
 #crt-overlay {
   position: fixed;
@@ -461,34 +457,30 @@ a {
 }
 
 /* Micro-labels / Eyebrows */
-.eyebrow {
+.eyebrow,
+.eyebrow-red,
+.eyebrow-cyan {
   display: block;
-  color: var(--ghost-white);
   margin-bottom: 0.5rem;
   letter-spacing: 2px;
   font-size: 0.85rem;
+}
+
+.eyebrow {
+  color: var(--ghost-white);
 }
 
 .eyebrow-red {
   color: var(--signal-red);
-  display: block;
-  margin-bottom: 0.5rem;
-  letter-spacing: 2px;
-  font-size: 0.85rem;
 }
 
 .eyebrow-cyan {
   color: var(--corrupt-cyan);
-  display: block;
-  margin-bottom: 0.5rem;
-  letter-spacing: 2px;
-  font-size: 0.85rem;
 }
 
 /* Breach Section Text Blocks */
 .decrypted-file,
 .terminal-block {
-  max-width: 800px;
   position: relative;
 }
 
@@ -556,10 +548,6 @@ a {
   justify-content: center;
 }
 
-.break-in {
-  /* background handled by glass-panel wrapper */
-}
-
 .break-in h2 {
   color: var(--signal-red);
 }
@@ -567,10 +555,6 @@ a {
 .break-in .track-desc {
   color: var(--ghost-white);
   font-weight: bold;
-}
-
-.build-out {
-  /* background handled by glass-panel wrapper */
 }
 
 .build-out h2 {
@@ -877,6 +861,18 @@ a {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+
+  /* #8 — Scroll-padding: match collapsed navbar height */
+  html {
+    scroll-padding-top: 70px;
+  }
+
+  /* #9 — CRT overlay: disable animation to reduce GPU load */
+  #crt-overlay {
+    animation: none;
+    opacity: 0.25;
+  }
+
   .tracks-container {
     flex-direction: column;
   }
@@ -939,11 +935,16 @@ a {
     margin-top: 1.5rem;
   }
 
+  /* #1 — Touch targets: min 44px height for nav links */
   .nav-links a {
     font-size: 0.9rem;
     padding: 0.5rem;
     width: 100%;
     text-align: center;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .nav-links a:active {
@@ -1025,6 +1026,13 @@ a {
   .countdown {
     justify-content: flex-start;
     gap: 0.4rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* #3 — Track padding: reduce excessive side padding */
+  .track {
+    padding: 2.5rem 1.5rem;
   }
 
   .time-block {
@@ -1039,6 +1047,37 @@ a {
 
   .process-list li {
     font-size: 0.85rem;
+    word-break: break-all;
+  }
+
+  /* #6 — Log lines: stack timestamp above message */
+  .log-line {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .log-line .timestamp {
+    margin-right: 0;
+  }
+
+  /* #7 — Map embed: adjust height for mobile viewport */
+  .map-embed iframe {
+    height: 200px;
+  }
+
+  /* #5 — Reg buttons: full-width stacking for consistent layout */
+  .reg-options {
+    flex-direction: column;
+  }
+
+  .reg-btn {
+    width: 100%;
+    text-align: center;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   /* Disable custom cursor */
