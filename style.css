@@ -14,13 +14,10 @@
   --font-display: 'Archivo Black', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
-
-/* Global Reset & Base Styles */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px;
+  scroll-padding-top: 15px;
   overflow-x: hidden;
-  /* Offset for fixed navbar */
 }
 
 * {
@@ -42,16 +39,11 @@ body {
   font-family: var(--font-mono);
   overflow-x: hidden;
   cursor: none;
-  /* Hide default cursor for custom cursor */
 }
-
-/* Selection color */
 ::selection {
   background-color: var(--signal-red);
   color: var(--void);
 }
-
-/* Typography */
 h1,
 h2,
 h3 {
@@ -84,10 +76,7 @@ a {
   color: var(--signal-red);
   text-decoration: none;
   cursor: none;
-  /* Let custom cursor handle it */
 }
-
-/* Custom Cursor */
 #custom-cursor {
   position: fixed;
   top: 0;
@@ -98,12 +87,9 @@ a {
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  /* Center on mouse */
   transition: opacity 0.1s;
   text-shadow: 0 0 5px var(--signal-red);
 }
-
-/* CRT Scanline & Vignette Backgrounds */
 #crt-overlay {
   position: fixed;
   top: 0;
@@ -141,8 +127,6 @@ a {
   pointer-events: none;
   z-index: 9001;
 }
-
-/* Utility Classes */
 .mt-4 {
   margin-top: 2rem;
 }
@@ -155,13 +139,19 @@ a {
   animation: blink 1s step-end infinite;
 }
 
+.text-red {
+  color: var(--signal-red) !important;
+}
+
+.text-cyan {
+  color: var(--corrupt-cyan) !important;
+}
+
 @keyframes blink {
   50% {
     opacity: 0;
   }
 }
-
-/* Section Layouts */
 .fullscreen-section {
   min-height: 100vh;
   display: flex;
@@ -183,8 +173,6 @@ a {
   margin: 0 auto;
   width: 100%;
 }
-
-/* Glass Panels */
 .glass-panel {
   background-color: rgba(21, 21, 23, 0.6);
   backdrop-filter: blur(12px);
@@ -194,8 +182,6 @@ a {
   padding: 2rem;
   position: relative;
 }
-
-/* Navbar */
 #navbar {
   position: fixed;
   top: 0;
@@ -244,6 +230,7 @@ a {
   width: 32px;
   height: 32px;
 }
+
 .menu-toggle svg {
   transition: transform 0.3s ease;
 }
@@ -259,8 +246,6 @@ a {
   box-shadow: 0 0 15px rgba(255, 42, 60, 0.4);
   border-color: var(--signal-red);
 }
-
-/* Header Icons */
 .header-with-icon {
   display: flex;
   align-items: center;
@@ -285,8 +270,6 @@ a {
 .cyan-icon {
   color: var(--corrupt-cyan);
 }
-
-/* Boot Sequence */
 #boot-text {
   color: var(--ghost-white);
   margin-bottom: 2rem;
@@ -367,8 +350,6 @@ a {
   animation: blink 1.5s infinite;
   margin: 0 -0.2rem;
 }
-
-/* Glitch Typography Effects */
 .glitch-text {
   position: relative;
   display: inline-block;
@@ -384,8 +365,6 @@ a {
   height: 100%;
   opacity: 0;
 }
-
-/* Trigger glitch on hover or via JS class */
 .glitch-text:hover::before,
 .glitch-active::before {
   left: 2px;
@@ -455,8 +434,6 @@ a {
     clip: rect(50px, 9999px, 99px, 0);
   }
 }
-
-/* Micro-labels / Eyebrows */
 .eyebrow,
 .eyebrow-red,
 .eyebrow-cyan {
@@ -477,8 +454,6 @@ a {
 .eyebrow-cyan {
   color: var(--corrupt-cyan);
 }
-
-/* Breach Section Text Blocks */
 .decrypted-file,
 .terminal-block {
   position: relative;
@@ -528,16 +503,13 @@ a {
 
 .highlight-list li::before {
   content: "> ";
-  color: var(--corrupt-cyan); /* Matches the theme better, or user requested "the > ones we are already using" which usually are cyan in geolocate or stats */
+  color: var(--corrupt-cyan);
 }
-
-/* Tracks Split Screen */
 .tracks-container {
   display: flex;
   min-height: 70vh;
   position: relative;
   padding: 0;
-  /* Remove inner padding so tracks can fill */
 }
 
 .track {
@@ -597,8 +569,6 @@ a {
   opacity: 0.8;
   margin-top: 1rem;
 }
-
-/* Track Meta Info */
 .track-meta {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
@@ -637,8 +607,6 @@ a {
   color: var(--corrupt-cyan);
   filter: drop-shadow(0 0 5px rgba(42, 245, 216, 0.4));
 }
-
-/* Laser Divider */
 .laser-divider {
   width: 2px;
   background: linear-gradient(to bottom, transparent, var(--signal-red) 30%, var(--corrupt-cyan) 70%, transparent);
@@ -661,8 +629,6 @@ a {
     box-shadow: 0 0 20px var(--signal-red), 0 0 15px var(--corrupt-cyan);
   }
 }
-
-/* Timeline / System Log */
 .log-container {
   border-left: 3px solid var(--signal-red);
   font-size: 0.95rem;
@@ -726,8 +692,6 @@ a {
 .map-embed:hover {
   filter: grayscale(20%) contrast(1);
 }
-
-/* Prizes / Payload */
 .prize-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -744,8 +708,6 @@ a {
   color: var(--signal-red);
   margin-top: 1rem;
 }
-
-/* Sponsors */
 .sponsor-tier-title {
   text-align: center;
   color: var(--ghost-white);
@@ -798,9 +760,17 @@ a {
   color: var(--corrupt-cyan);
 }
 
-/* Shutdown Prompt (Footer) */
+#shutdown {
+  padding-top: 2rem;
+  padding-bottom: 6rem;
+}
+
+#contact {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
 .terminal-prompt {
-  margin-bottom: 4rem;
+  margin-bottom: 0;
 }
 
 .warning-text {
@@ -837,17 +807,121 @@ a {
   background: rgba(255, 42, 60, 0.1);
   box-shadow: 0 0 10px rgba(255, 42, 60, 0.5);
 }
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
 
-.footer-meta {
+.contact-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 3px solid var(--corrupt-cyan);
+  transition: all 0.3s ease;
+}
+
+.contact-row:hover {
+  background: rgba(42, 245, 216, 0.05);
+  border-left-color: var(--signal-red);
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.person-role {
+  color: var(--corrupt-cyan);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  font-family: var(--font-mono);
+}
+
+.person-name {
   color: var(--ghost-white);
-  font-size: 0.9rem;
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-transform: uppercase;
 }
 
-.footer-meta p {
-  margin-bottom: 0.2rem;
+.person-phone {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--ghost-white);
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  transition: all 0.3s;
 }
 
-/* Scroll Animation Classes */
+.phone-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--corrupt-cyan);
+  transition: all 0.3s;
+}
+
+.person-phone:hover {
+  color: var(--signal-red);
+  text-shadow: 0 0 10px rgba(255, 42, 60, 0.5);
+}
+
+.person-phone:hover .phone-icon {
+  color: var(--signal-red);
+}
+
+.person-phone:hover {
+  text-shadow: 0 0 10px rgba(42, 245, 216, 0.5);
+  color: var(--ghost-white);
+}
+.simple-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem 2rem 1rem;
+  background-color: rgba(10, 10, 12, 0.9);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 2rem;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--ghost-white);
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+  background: rgba(42, 245, 216, 0.1);
+  border-color: var(--corrupt-cyan);
+  color: var(--corrupt-cyan);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(42, 245, 216, 0.3);
+}
+
+.footer-copy {
+  color: var(--static-grey);
+  font-size: 0.85rem;
+  text-align: center;
+}
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
@@ -858,16 +932,10 @@ a {
   opacity: 1;
   transform: translateY(0);
 }
-
-/* Responsive adjustments */
 @media (max-width: 768px) {
-
-  /* #8 — Scroll-padding: match collapsed navbar height */
   html {
     scroll-padding-top: 70px;
   }
-
-  /* #9 — CRT overlay: disable animation to reduce GPU load */
   #crt-overlay {
     animation: none;
     opacity: 0.25;
@@ -875,6 +943,17 @@ a {
 
   .tracks-container {
     flex-direction: column;
+  }
+
+  .contact-list {
+    gap: 1.5rem;
+  }
+
+  .contact-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    border-left-width: 4px;
   }
 
   .track-meta {
@@ -896,8 +975,6 @@ a {
     transform: translateY(-50%) translateX(0);
     background: linear-gradient(to right, transparent, var(--signal-red) 30%, var(--corrupt-cyan) 70%, transparent);
   }
-
-  /* Make navbar usable on mobile with a dropdown */
   #navbar {
     flex-direction: row;
     flex-wrap: wrap;
@@ -911,6 +988,7 @@ a {
     right: 1.5rem;
     top: 0.75rem;
   }
+
   .menu-toggle.open svg {
     transform: rotate(180deg);
   }
@@ -921,21 +999,19 @@ a {
     width: 100%;
     align-items: center;
     gap: 1.5rem;
-    
+
     max-height: 0;
     opacity: 0;
     margin-top: 0;
     overflow: hidden;
     transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin-top 0.4s ease;
   }
-  
+
   .nav-links.active {
     max-height: 600px;
     opacity: 1;
     margin-top: 1.5rem;
   }
-
-  /* #1 — Touch targets: min 44px height for nav links */
   .nav-links a {
     font-size: 0.9rem;
     padding: 0.5rem;
@@ -946,12 +1022,12 @@ a {
     align-items: center;
     justify-content: center;
   }
-  
+
   .nav-links a:active {
     color: var(--corrupt-cyan);
     text-shadow: 0 0 8px var(--corrupt-cyan);
   }
-  
+
   .nav-cta:active {
     background: rgba(255, 42, 60, 0.15);
     box-shadow: 0 0 15px rgba(255, 42, 60, 0.4);
@@ -961,14 +1037,12 @@ a {
   .nav-cta {
     padding: 0.4rem 1rem;
   }
-
-  /* Adjust section padding for mobile */
   .content-section {
     padding: 4rem 1rem;
   }
 
   .section-header {
-    padding: 0 1rem; /* Extra space around section titles */
+    padding: 0 1rem;
   }
 
   .fullscreen-section {
@@ -979,12 +1053,10 @@ a {
     padding: 1.25rem;
     margin-bottom: 1.5rem;
   }
-
-  /* Typography scaling */
   body {
     font-size: 0.9rem;
   }
-  
+
   h1 {
     font-size: clamp(2.2rem, 9vw, 3.5rem);
   }
@@ -1005,9 +1077,9 @@ a {
   }
 
   .mobile-only-title h1 {
-    font-size: clamp(3rem, 14vw, 5.5rem); /* Make it a bit smaller */
+    font-size: clamp(3rem, 14vw, 5.5rem);
     line-height: 1;
-    margin: -0.2rem 0; /* Tighten line spacing */
+    margin: -0.2rem 0;
   }
 
   .terminal-window {
@@ -1029,8 +1101,6 @@ a {
     flex-wrap: wrap;
     justify-content: center;
   }
-
-  /* #3 — Track padding: reduce excessive side padding */
   .track {
     padding: 2.5rem 1.5rem;
   }
@@ -1049,8 +1119,6 @@ a {
     font-size: 0.85rem;
     word-break: break-all;
   }
-
-  /* #6 — Log lines: stack timestamp above message */
   .log-line {
     display: flex;
     flex-direction: column;
@@ -1060,13 +1128,9 @@ a {
   .log-line .timestamp {
     margin-right: 0;
   }
-
-  /* #7 — Map embed: adjust height for mobile viewport */
   .map-embed iframe {
     height: 200px;
   }
-
-  /* #5 — Reg buttons: full-width stacking for consistent layout */
   .reg-options {
     flex-direction: column;
   }
@@ -1079,8 +1143,6 @@ a {
     align-items: center;
     justify-content: center;
   }
-
-  /* Disable custom cursor */
   #custom-cursor {
     display: none !important;
   }

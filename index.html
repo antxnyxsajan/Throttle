@@ -130,7 +130,18 @@
     </section>
 
     <!-- Tracks Split Screen -->
-    <section id="tracks" class="fade-in content-wrapper">
+    <section id="tracks" class="fade-in content-wrapper content-section">
+        <div class="section-header">
+            <span class="eyebrow">>_ CHOOSE YOUR PATH</span>
+            <div class="header-with-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                <h2 class="glitch-text" data-text="TRACKS">TRACKS</h2>
+            </div>
+        </div>
         <div class="tracks-container glass-panel">
             <div class="track left-track break-in">
                 <div class="track-content">
@@ -219,6 +230,31 @@
         </div>
     </section>
 
+    <!-- Payload (Prizes) -->
+    <section id="payload" class="content-wrapper content-section fade-in">
+        <div class="section-header">
+            <span class="eyebrow">>_ PAYLOAD</span>
+            <div class="header-with-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                    </polygon>
+                </svg>
+                <h2 class="glitch-text" data-text="PRIZE POOL">PRIZE POOL</h2>
+            </div>
+        </div>
+        <div class="prize-grid">
+            <div class="prize-card glass-panel">
+                <h3 class="text-red">BREAK//IN</h3>
+                <div class="prize-amount decrypt" data-target="[TBD]">₹#####</div>
+            </div>
+            <div class="prize-card glass-panel">
+                <h3 class="text-cyan">BUILD//OUT</h3>
+                <div class="prize-amount decrypt" data-target="[TBD]">₹#####</div>
+            </div>
+        </div>
+    </section>
+
     <!-- System Log (Timeline & Venue) -->
     <section id="timeline" class="content-wrapper content-section fade-in">
         <div class="section-header">
@@ -260,7 +296,7 @@
             <span class="eyebrow">LOCATION DATA</span>
             <div class="venue-content">
                 <div class="geolocate-data">
-                    <h3 class="venue-name">RAJAGIRI SCHOOL OF ENGINEERING & TECHNOLOGY</h3>
+                    <h3 class="venue-name text-red">RAJAGIRI SCHOOL OF ENGINEERING & TECHNOLOGY</h3>
                     <p>Kakkanad, Kochi, Kerala 682039</p>
                 </div>
                 <div class="map-embed">
@@ -306,30 +342,6 @@
         </div>
     </section>
 
-    <!-- Payload (Prizes) -->
-    <section id="payload" class="content-wrapper content-section fade-in">
-        <div class="section-header">
-            <span class="eyebrow">>_ PAYLOAD</span>
-            <div class="header-with-icon">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polygon
-                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                    </polygon>
-                </svg>
-                <h2 class="glitch-text" data-text="REWARDS">REWARDS</h2>
-            </div>
-        </div>
-        <div class="prize-grid">
-            <div class="prize-card glass-panel">
-                <h3>BREAK//IN WINNER</h3>
-                <div class="prize-amount decrypt" data-target="[TBD]">₹#####</div>
-            </div>
-            <div class="prize-card glass-panel">
-                <h3>BUILD//OUT WINNER</h3>
-                <div class="prize-amount decrypt" data-target="[TBD]">₹#####</div>
-            </div>
-        </div>
-    </section>
 
     <!-- Shutdown (Footer) -->
     <section id="shutdown" class="content-wrapper content-section">
@@ -343,12 +355,99 @@
             </div>
             <p id="decline-msg" class="hidden error-text">UNAUTHORIZED ABORT. REROUTING...</p>
         </div>
-        <div class="footer-meta">
-            <p>contact: hackclub@rajagiritech.edu.in</p>
-            <p>instagram: @hackclubrset</p>
-            <p>linkedin: /company/hack-club-rset</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="content-wrapper content-section fade-in">
+        <div class="section-header">
+            <span class="eyebrow">>_ SECURE COMMS</span>
+            <div class="header-with-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                    </path>
+                </svg>
+                <h2 class="glitch-text" data-text="PING US">PING US</h2>
+            </div>
+        </div>
+        <div class="contact-list">
+            <div class="contact-row glass-panel">
+                <div class="contact-info">
+                    <span class="person-role">CHAIRPERSON //</span>
+                    <span class="person-name">MILEE B KOKKATT</span>
+                </div>
+                <a href="tel:[PHONE_1]" class="person-phone">
+                    <svg class="icon phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                        </path>
+                    </svg>
+                    +91 85478 52837
+                </a>
+            </div>
+            <div class="contact-row glass-panel">
+                <div class="contact-info">
+                    <span class="person-role">VICE CHAIR //</span>
+                    <span class="person-name">EMI TREESA JAYAN</span>
+                </div>
+                <a href="tel:[PHONE_2]" class="person-phone">
+                    <svg class="icon phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                        </path>
+                    </svg>
+                    +91 94951 91352
+                </a>
+            </div>
+            <div class="contact-row glass-panel">
+                <div class="contact-info">
+                    <span class="person-role">FACULTY IN-CHARGE //</span>
+                    <span class="person-name">DR. ELIZABETH RITA SAMUEL</span>
+                </div>
+                <a href="tel:[PHONE_3]" class="person-phone">
+                    <svg class="icon phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                        </path>
+                    </svg>
+                    +91 94473 05837
+                </a>
+            </div>
         </div>
     </section>
+
+    <!-- Normal Footer -->
+    <footer class="simple-footer">
+        <div class="footer-socials">
+            <a href="mailto:hackclub@rajagiritech.edu.in" target="_blank" class="social-btn" aria-label="Email">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="16" x="2" y="4" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                </svg>
+            </a>
+            <a href="https://instagram.com/hackclubrset" target="_blank" class="social-btn" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                </svg>
+            </a>
+            <a href="https://linkedin.com/company/hack-club-rset" target="_blank" class="social-btn"
+                aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                    <rect width="4" height="12" x="2" y="9" />
+                    <circle cx="4" cy="4" r="2" />
+                </svg>
+            </a>
+        </div>
+        <div class="footer-copy">
+            <p>&copy; 2026 Hack Club RSET. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
