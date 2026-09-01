@@ -811,13 +811,64 @@ a {
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
-.terminal-prompt {
+.terminal-prompt.glass-panel {
   margin-bottom: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.terminal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.8rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.terminal-title {
+  font-size: 0.85rem;
+  color: var(--static-grey);
+}
+
+.terminal-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.control-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.control-dot.close { background-color: var(--signal-red); }
+.control-dot.minimize { background-color: #f1c40f; }
+.control-dot.expand { background-color: var(--corrupt-cyan); }
+
+.terminal-body {
+  padding: 2rem;
+  font-family: var(--font-mono);
+}
+
+.prompt-text {
+  color: var(--ghost-white);
+  margin-bottom: 0.5rem;
+}
+
+.cursor-line {
+  margin-top: 2rem;
+  color: var(--corrupt-cyan);
+}
+
+.blinking-cursor {
+  animation: blink 1s step-end infinite;
 }
 
 .warning-text {
   color: var(--signal-red);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   font-weight: bold;
 }
 
@@ -829,25 +880,55 @@ a {
 
 .reg-options {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   margin-top: 2rem;
   flex-wrap: wrap;
 }
 
+.btn-prefix {
+  color: var(--corrupt-cyan);
+  margin-right: 0.8rem;
+  font-weight: bold;
+}
+
+.no-reg .btn-prefix {
+  color: var(--signal-red);
+}
+
 .reg-btn {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--static-grey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--ghost-white);
-  transition: all 0.2s;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 200px;
 }
 
 .reg-btn:hover {
+  border-color: var(--corrupt-cyan);
+  background: rgba(42, 245, 216, 0.05);
+  box-shadow: 0 0 15px rgba(42, 245, 216, 0.2);
+  transform: translateY(-2px);
+}
+
+.reg-btn:hover .btn-text {
+  color: var(--corrupt-cyan);
+}
+
+.reg-btn.no-reg:hover {
   border-color: var(--signal-red);
-  color: var(--signal-red);
   background: rgba(255, 42, 60, 0.1);
-  box-shadow: 0 0 10px rgba(255, 42, 60, 0.5);
+  box-shadow: 0 0 15px rgba(255, 42, 60, 0.4);
+}
+
+.reg-btn.no-reg:hover .btn-prefix,
+.reg-btn.no-reg:hover .btn-text {
+  color: var(--signal-red);
+  text-shadow: 2px 0 var(--corrupt-cyan), -2px 0 var(--void);
 }
 .contact-list {
   display: flex;

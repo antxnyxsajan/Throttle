@@ -121,18 +121,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Footer Interactive Prompt ---
     const btnDecline = document.getElementById('btn-decline');
-    const declineMsg = document.getElementById('decline-msg');
 
-    if (btnDecline && declineMsg) {
+    if (btnDecline) {
         btnDecline.addEventListener('click', (e) => {
             e.preventDefault();
-            declineMsg.classList.remove('hidden');
-            // Fake flicker
-            btnDecline.style.opacity = '0';
-            setTimeout(() => { btnDecline.style.opacity = '1'; }, 100);
-            setTimeout(() => { btnDecline.style.opacity = '0.5'; }, 200);
-            setTimeout(() => { btnDecline.style.opacity = '1'; }, 300);
         });
+
+        const btnText = btnDecline.querySelector('.btn-text');
+        if (btnText) {
+            const originalText = btnText.textContent;
+            const scrambleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+            let scrambleInterval;
+
+            btnDecline.addEventListener('mouseenter', () => {
+                scrambleInterval = setInterval(() => {
+                    btnText.textContent = originalText.split('').map(char => {
+                        if (char === ' ') return ' ';
+                        return scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
+                    }).join('');
+                }, 50);
+            });
+
+            btnDecline.addEventListener('mouseleave', () => {
+                clearInterval(scrambleInterval);
+                btnText.textContent = originalText;
+            });
+        }
     }
 
     // --- Countdown Timer ---
@@ -142,6 +156,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const hoursEl = document.getElementById('hours');
     const minutesEl = document.getElementById('minutes');
     const secondsEl = document.getElementById('seconds');
+
+    const regDaysEl = document.getElementById('reg-days');
+    const regHoursEl = document.getElementById('reg-hours');
+    const regMinutesEl = document.getElementById('reg-minutes');
+    const regSecondsEl = document.getElementById('reg-seconds');
 
     let countdownInterval = null;
 
@@ -164,6 +183,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
         if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
         if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+
+        if (regDaysEl) regDaysEl.textContent = String(days).padStart(2, '0');
+        if (regHoursEl) regHoursEl.textContent = String(hours).padStart(2, '0');
+        if (regMinutesEl) regMinutesEl.textContent = String(minutes).padStart(2, '0');
+        if (regSecondsEl) regSecondsEl.textContent = String(seconds).padStart(2, '0');
     }
 
     updateCountdown();

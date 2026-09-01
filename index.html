@@ -184,7 +184,7 @@
                                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                             </svg>
-                            <span>TEAM SIZE: <br>[TBD_SIZE]</span>
+                            <span>TEAM SIZE: <br>3-4</span>
                         </div>
                     </div>
                 </div>
@@ -227,7 +227,7 @@
                                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                             </svg>
-                            <span>TEAM SIZE: <br>[TBD_SIZE]</span>
+                            <span>TEAM SIZE: <br>3-4</span>
                         </div>
                     </div>
                 </div>
@@ -348,17 +348,46 @@
     </section>
 
 
-    <!-- Shutdown (Footer) -->
-    <section id="shutdown" class="content-wrapper content-section">
-        <div class="terminal-prompt glass-panel">
-            <p class="warning-text">SESSION ENDING IN [TBD]...</p>
-            <p>CONFIRM REGISTRATION?</p>
-            <div class="reg-options">
-                <a href="#" class="reg-btn ctf-reg">[Y] BREAK//IN (CTF)</a>
-                <a href="#" class="reg-btn hack-reg">[Y] BUILD//OUT (HACK)</a>
-                <a href="#" class="reg-btn no-reg" id="btn-decline">[N] ABORT</a>
+    <!-- Shutdown (Registration) -->
+    <section id="shutdown" class="content-wrapper content-section fade-in">
+        <div class="section-header">
+            <span class="eyebrow">>_ INITIALIZE SEQUENCE</span>
+            <div class="header-with-icon">
+                <svg class="icon red-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <h2 class="glitch-text" data-text="REGISTRATION">REGISTRATION</h2>
             </div>
-            <p id="decline-msg" class="hidden error-text">UNAUTHORIZED ABORT. REROUTING...</p>
+        </div>
+        <div class="terminal-prompt glass-panel">
+            <div class="terminal-header">
+                <span class="terminal-title">guest@throttle:~/register</span>
+                <span class="terminal-controls">
+                    <span class="control-dot close"></span>
+                    <span class="control-dot minimize"></span>
+                    <span class="control-dot expand"></span>
+                </span>
+            </div>
+            <div class="terminal-body">
+                <p class="warning-text mt-4">> WARNING: REGISTRATIONS CLOSING IN <span id="reg-days">00</span>D:<span id="reg-hours">00</span>H:<span id="reg-minutes">00</span>M:<span id="reg-seconds">00</span>S...</p>
+                <p class="prompt-text">> SYSTEM REQUIRES CONFIRMATION TO PROCEED.</p>
+                <p class="prompt-text">> SELECT TRACK REGISTRATION:</p>
+                <div class="reg-options">
+                    <a href="https://konfhub.com/ctf-throttle" target="_blank" class="reg-btn ctf-reg">
+                        <span class="btn-prefix">[Y]</span>
+                        <span class="btn-text">BREAK//IN (CTF)</span>
+                    </a>
+                    <a href="https://konfhub.com/hackathon-throttle" target="_blank" class="reg-btn hack-reg">
+                        <span class="btn-prefix">[Y]</span>
+                        <span class="btn-text">BUILD//OUT (HACK)</span>
+                    </a>
+                    <a href="#" class="reg-btn no-reg" id="btn-decline">
+                        <span class="btn-prefix">[N]</span>
+                        <span class="btn-text">ABORT SEQUENCE</span>
+                    </a>
+                </div>
+                <p class="cursor-line">guest@throttle:~/register$ <span class="blinking-cursor">█</span></p>
+            </div>
         </div>
     </section>
 
