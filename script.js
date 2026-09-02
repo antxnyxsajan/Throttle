@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
     // --- Custom Cursor ---
     const cursor = document.getElementById('custom-cursor');
     
@@ -52,6 +54,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Nav Links Scramble ---
+    const navLinksList = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+    const scrambleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+    navLinksList.forEach(link => {
+        const originalText = link.textContent;
+        let hoverInterval;
+        link.addEventListener('mouseenter', () => {
+            if (isMobile) return;
+            clearInterval(hoverInterval);
+            let iterations = 0;
+            hoverInterval = setInterval(() => {
+                link.textContent = originalText.split('').map(char => {
+                    return Math.random() > 0.5 ? char : scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
+                }).join('');
+                
+                iterations++;
+                if (iterations > 6) {
+                    clearInterval(hoverInterval);
+                    link.textContent = originalText;
+                }
+            }, 40);
+        });
+        link.addEventListener('mouseleave', () => {
+            if (isMobile) return;
+            clearInterval(hoverInterval);
+            link.textContent = originalText;
+        });
+    });
 
     // --- Scroll Animations (Intersection Observer) ---
     const observerOptions = {
@@ -118,6 +148,38 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 50);
         });
     }
+
+    // --- Sponsor Hover Decrypt ---
+    const sponsors = document.querySelectorAll('.decrypt-sponsor');
+    sponsors.forEach(sponsor => {
+        const targetText = sponsor.getAttribute('data-target') || sponsor.textContent;
+        const originalText = sponsor.textContent;
+        let hoverInterval;
+        
+        sponsor.parentElement.addEventListener('mouseenter', () => {
+            if (isMobile) return;
+            let iterations = 0;
+            clearInterval(hoverInterval);
+            hoverInterval = setInterval(() => {
+                sponsor.textContent = targetText.split('').map((char, index) => {
+                    if (index < iterations / 2) return targetText[index];
+                    return chars[Math.floor(Math.random() * chars.length)];
+                }).join('');
+                
+                if (iterations >= targetText.length * 2) {
+                    clearInterval(hoverInterval);
+                    sponsor.textContent = targetText;
+                }
+                iterations++;
+            }, 30);
+        });
+        
+        sponsor.parentElement.addEventListener('mouseleave', () => {
+            if (isMobile) return;
+            clearInterval(hoverInterval);
+            sponsor.textContent = originalText;
+        });
+    });
 
     // --- Footer Interactive Prompt ---
     const btnDecline = document.getElementById('btn-decline');
