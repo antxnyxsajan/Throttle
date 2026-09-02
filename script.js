@@ -1,5 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- Preloader (1s Simple Shutter) ---
+    const loaderScreen = document.getElementById('loader-screen');
+    if (loaderScreen) {
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => {
+            loaderScreen.classList.add('open');
+            document.body.style.overflow = '';
+            setTimeout(() => {
+                loaderScreen.remove();
+            }, 550);
+        }, 1000);
+    }
+
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
     // --- Custom Cursor ---
