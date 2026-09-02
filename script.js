@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
     // --- Custom Cursor ---
     const cursor = document.getElementById('custom-cursor');
-    
+
     if (cursor) {
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Mobile Menu Toggle ---
     const menuBtn = document.getElementById('mobile-menu-btn');
     const navLinks = document.getElementById('nav-links');
-    
+
     if (menuBtn && navLinks) {
         menuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Nav Links Scramble ---
+    // --- Nav Links Scramble  ---
     const navLinksList = document.querySelectorAll('.nav-links a:not(.nav-cta)');
     const scrambleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
     navLinksList.forEach(link => {
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.textContent = originalText.split('').map(char => {
                     return Math.random() > 0.5 ? char : scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
                 }).join('');
-                
+
                 iterations++;
                 if (iterations > 6) {
                     clearInterval(hoverInterval);
@@ -94,19 +94,19 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                
+
                 // Trigger text glitch once when section appears
                 const heading = entry.target.querySelector('.glitch-text');
                 if (heading) {
                     heading.classList.add('glitch-active');
                     setTimeout(() => heading.classList.remove('glitch-active'), 800);
                 }
-                
+
                 // Decrypt prize effect when payload is visible
                 if (entry.target.id === 'payload') {
                     startDecrypt();
                 }
-                
+
                 observerInstance.unobserve(entry.target);
             }
         });
@@ -124,14 +124,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function startDecrypt() {
         if (decryptStarted) return;
         decryptStarted = true;
-        
+
         const decryptElements = document.querySelectorAll('.decrypt');
-        
+
         decryptElements.forEach(el => {
             const targetText = el.getAttribute('data-target') || '';
             let iterations = 0;
             const maxIterations = 20;
-            
+
             const interval = setInterval(() => {
                 el.textContent = targetText.split('').map((char, index) => {
                     if (index < iterations / 2) {
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     return chars[Math.floor(Math.random() * chars.length)];
                 }).join('');
-                
+
                 if (iterations >= maxIterations * 2) {
                     clearInterval(interval);
                     el.textContent = targetText;
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const targetText = sponsor.getAttribute('data-target') || sponsor.textContent;
         const originalText = sponsor.textContent;
         let hoverInterval;
-        
+
         sponsor.parentElement.addEventListener('mouseenter', () => {
             if (isMobile) return;
             let iterations = 0;
@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (index < iterations / 2) return targetText[index];
                     return chars[Math.floor(Math.random() * chars.length)];
                 }).join('');
-                
+
                 if (iterations >= targetText.length * 2) {
                     clearInterval(hoverInterval);
                     sponsor.textContent = targetText;
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 iterations++;
             }, 30);
         });
-        
+
         sponsor.parentElement.addEventListener('mouseleave', () => {
             if (isMobile) return;
             clearInterval(hoverInterval);
