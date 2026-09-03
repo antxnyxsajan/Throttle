@@ -194,6 +194,13 @@
                             <span>TEAM SIZE: <br>3-4</span>
                         </div>
                     </div>
+                    <div class="track-actions">
+                        <a href="https://konfhub.com/ctf-throttle" target="_blank" rel="noopener noreferrer"
+                            class="track-reg-btn track-btn-red">
+                            <span>REGISTER FOR CTF</span>
+                            <span class="btn-arrow">↗</span>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="laser-divider"></div>
@@ -236,6 +243,13 @@
                             </svg>
                             <span>TEAM SIZE: <br>3-4</span>
                         </div>
+                    </div>
+                    <div class="track-actions">
+                        <a href="https://konfhub.com/hackathon-throttle" target="_blank" rel="noopener noreferrer"
+                            class="track-reg-btn track-btn-cyan">
+                            <span>REGISTER FOR HACKATHON</span>
+                            <span class="btn-arrow">↗</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -378,25 +392,99 @@
                 </span>
             </div>
             <div class="terminal-body">
-                <p class="warning-text mt-4">> WARNING: REGISTRATIONS CLOSING IN <span id="reg-days">00</span>D:<span
-                        id="reg-hours">00</span>H:<span id="reg-minutes">00</span>M:<span id="reg-seconds">00</span>S...
-                </p>
-                <p class="prompt-text">> SYSTEM REQUIRES CONFIRMATION TO PROCEED.</p>
-                <p class="prompt-text">> SELECT TRACK REGISTRATION:</p>
-                <div class="reg-options">
-                    <a href="https://konfhub.com/ctf-throttle" target="_blank" class="reg-btn ctf-reg">
-                        <span class="btn-prefix">[Y]</span>
-                        <span class="btn-text">BREAK//IN (CTF)</span>
+                <div class="reg-terminal-alerts">
+                    <p class="warning-text mt-4">> WARNING: REGISTRATIONS CLOSING IN <span
+                            id="reg-days">00</span>D:<span id="reg-hours">00</span>H:<span
+                            id="reg-minutes">00</span>M:<span id="reg-seconds">00</span>S...
+                    </p>
+                    <p class="prompt-text">> SYSTEM REQUIRES CONFIRMATION TO PROCEED.</p>
+                    <p class="prompt-text prompt-action-callout">> CHOOSE YOUR TRACK TO REGISTER NOW:</p>
+                </div>
+
+                <div class="reg-options-grid">
+                    <!-- CTF Track Register CTA Card -->
+                    <a href="https://konfhub.com/ctf-throttle" target="_blank" rel="noopener noreferrer"
+                        class="reg-card reg-btn ctf-reg" id="reg-ctf-btn">
+                        <div class="reg-card-header">
+                            <span class="reg-track-badge badge-red">
+                                <span class="live-dot dot-red"></span>
+                                TRACK 01 // CTF
+                            </span>
+                            <span class="reg-portal-status">PORTAL ACTIVE ↗</span>
+                        </div>
+                        <div class="reg-card-content">
+                            <div class="reg-card-icon-wrap icon-red">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                            </div>
+                            <div class="reg-card-text">
+                                <h3 class="reg-card-title">BREAK//IN</h3>
+                                <p class="reg-card-sub">Cybersecurity & Capture The Flag</p>
+                            </div>
+                        </div>
+                        <div class="reg-cta-button cta-red">
+                            <span class="cta-prefix">[Y]</span>
+                            <span class="cta-label">REGISTER FOR CTF</span>
+                            <span class="cta-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </span>
+                        </div>
                     </a>
-                    <a href="https://konfhub.com/hackathon-throttle" target="_blank" class="reg-btn hack-reg">
-                        <span class="btn-prefix">[Y]</span>
-                        <span class="btn-text">BUILD//OUT (HACK)</span>
+
+                    <!-- Hackathon Track Register CTA Card -->
+                    <a href="https://konfhub.com/hackathon-throttle" target="_blank" rel="noopener noreferrer"
+                        class="reg-card reg-btn hack-reg" id="reg-hack-btn">
+                        <div class="reg-card-header">
+                            <span class="reg-track-badge badge-cyan">
+                                <span class="live-dot dot-cyan"></span>
+                                TRACK 02 // HACK
+                            </span>
+                            <span class="reg-portal-status">PORTAL ACTIVE ↗</span>
+                        </div>
+                        <div class="reg-card-content">
+                            <div class="reg-card-icon-wrap icon-cyan">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                                    <path d="M2 12h20"></path>
+                                </svg>
+                            </div>
+                            <div class="reg-card-text">
+                                <h3 class="reg-card-title">BUILD//OUT</h3>
+                                <p class="reg-card-sub">Hackathon & Product Engineering</p>
+                            </div>
+                        </div>
+                        <div class="reg-cta-button cta-cyan">
+                            <span class="cta-prefix">[Y]</span>
+                            <span class="cta-label">REGISTER FOR HACKATHON</span>
+                            <span class="cta-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </span>
+                        </div>
                     </a>
-                    <a href="#" class="reg-btn no-reg" id="btn-decline">
+                </div>
+
+                <div class="reg-footer-toolbar">
+                    <a href="#" class="reg-abort-action no-reg" id="btn-decline">
                         <span class="btn-prefix">[N]</span>
                         <span class="btn-text">ABORT SEQUENCE</span>
                     </a>
+                    <div class="reg-security-badge">
+                        <svg class="secure-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                        <span>Verified KonfHub ticketing portal • Instant confirmation</span>
+                    </div>
                 </div>
+
                 <p class="cursor-line">guest@throttle:~/register$ <span class="blinking-cursor">█</span></p>
             </div>
         </div>
