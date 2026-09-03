@@ -578,29 +578,30 @@ a {
 .identity-badge {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .identity-logo {
-  height: 56px;
-  width: 56px;
+  height: 72px;
+  width: 72px;
   object-fit: contain;
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  background: transparent;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.6));
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .identity-badge:hover .identity-logo {
-  transform: scale(1.05);
-  border-color: rgba(255, 42, 60, 0.4);
+  transform: scale(1.06);
+  filter: drop-shadow(0 0 18px rgba(255, 42, 60, 0.45));
 }
 
 .identity-text {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .identity-role {
@@ -608,11 +609,12 @@ a {
   font-size: 0.75rem;
   color: var(--signal-red);
   letter-spacing: 1px;
+  margin-bottom: 0.2rem;
 }
 
 .identity-title {
   font-family: var(--font-mono);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--ghost-white);
   letter-spacing: 0.5px;
@@ -621,7 +623,7 @@ a {
 .identity-divider {
   font-family: var(--font-mono);
   color: var(--static-grey);
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   user-select: none;
 }
 
@@ -630,8 +632,8 @@ a {
     display: none;
   }
   .identity-logo {
-    height: 46px;
-    width: 46px;
+    height: 58px;
+    width: 58px;
   }
 }
 
