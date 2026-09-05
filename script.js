@@ -15,16 +15,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-    // --- Custom Cursor ---
+    // --- Custom Cursor (Hardware-Accelerated via rAF) ---
     const cursor = document.getElementById('custom-cursor');
 
     if (cursor) {
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+        let mouseX = -100, mouseY = -100;
+        let rafId = null;
+
+        const updateCursorPos = () => {
+            cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+            rafId = null;
+        };
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.opacity = '1';
+            if (!rafId) {
+                rafId = requestAnimationFrame(updateCursorPos);
+            }
+        }, { passive: true });
+
+        document.addEventListener('mouseleave', () => {
+            cursor.style.opacity = '0';
         });
 
-        const clickables = document.querySelectorAll('a, button, .reg-btn');
+        const clickables = document.querySelectorAll('a, button, .reg-btn, .flow-node');
         clickables.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursor.textContent = ">_";

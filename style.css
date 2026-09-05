@@ -28,17 +28,30 @@ html {
 
 body {
   background-color: var(--void);
+  color: var(--ghost-white);
+  font-family: var(--font-mono);
+  overflow-x: hidden;
+  cursor: none;
+  position: relative;
+  isolation: isolate;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-image:
     linear-gradient(rgba(42, 245, 216, 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(42, 245, 216, 0.08) 1px, transparent 1px),
     radial-gradient(circle at 50% 0%, rgba(255, 42, 60, 0.15) 0%, transparent 60%);
   background-size: 40px 40px, 40px 40px, 100% 100%;
   background-position: center top, center top, center top;
-  background-attachment: fixed;
-  color: var(--ghost-white);
-  font-family: var(--font-mono);
-  overflow-x: hidden;
-  cursor: none;
+  pointer-events: none;
+  z-index: -1;
+  transform: translateZ(0);
 }
 ::selection {
   background-color: var(--signal-red);
@@ -86,9 +99,11 @@ a {
   font-size: 1.2rem;
   pointer-events: none;
   z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.1s;
+  opacity: 0;
+  transform: translate3d(-50%, -50%, 0);
+  transition: opacity 0.15s ease;
   text-shadow: 0 0 5px var(--signal-red);
+  will-change: transform;
 }
 #crt-overlay {
   position: fixed;
@@ -101,18 +116,8 @@ a {
   background-size: 100% 4px;
   pointer-events: none;
   z-index: 9000;
-  opacity: 0.4;
-  animation: scanlines 15s linear infinite;
-}
-
-@keyframes scanlines {
-  0% {
-    background-position: 0 0;
-  }
-
-  100% {
-    background-position: 0 100vh;
-  }
+  opacity: 0.35;
+  transform: translateZ(0);
 }
 
 #vignette {
@@ -126,6 +131,7 @@ a {
       rgba(0, 0, 0, 0.8) 100%);
   pointer-events: none;
   z-index: 9001;
+  transform: translateZ(0);
 }
 .mt-4 {
   margin-top: 2rem;
@@ -203,6 +209,7 @@ a {
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 0;
+  transform: translateZ(0);
 }
 
 .nav-brand {
@@ -894,28 +901,174 @@ a {
     box-shadow: 0 0 20px var(--signal-red), 0 0 15px var(--corrupt-cyan);
   }
 }
-.log-container {
+/* Flowchart Timeline */
+.flowchart-container {
+  max-width: 660px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.flow-node {
+  width: 100%;
+  background: rgba(16, 16, 20, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 1.25rem 1.6rem;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.flow-node:hover {
+  transform: translateY(-2px);
+}
+
+.flow-node-red {
   border-left: 3px solid var(--signal-red);
-  font-size: 0.95rem;
 }
 
-.log-line {
-  margin-bottom: 0.8rem;
-  opacity: 0.7;
-  transition: opacity 0.3s;
+.flow-node-red:hover {
+  border-color: rgba(255, 42, 60, 0.4);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 42, 60, 0.15), inset 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
-.log-line:hover {
-  opacity: 1;
+.flow-node-red .flow-timestamp {
+  color: var(--signal-red);
+  background: rgba(255, 42, 60, 0.08);
+  border: 1px solid rgba(255, 42, 60, 0.3);
+  box-shadow: 0 0 8px rgba(255, 42, 60, 0.15);
 }
 
-.log-line .timestamp {
+.flow-node-cyan {
+  border-left: 3px solid var(--corrupt-cyan);
+}
+
+.flow-node-cyan:hover {
+  border-color: rgba(42, 245, 216, 0.4);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(42, 245, 216, 0.15), inset 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.flow-node-cyan .flow-timestamp {
   color: var(--corrupt-cyan);
-  margin-right: 1rem;
+  background: rgba(42, 245, 216, 0.08);
+  border: 1px solid rgba(42, 245, 216, 0.3);
+  box-shadow: 0 0 8px rgba(42, 245, 216, 0.15);
 }
 
-.log-line .log-msg {
+.flow-node-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.flow-step-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--static-grey);
+  letter-spacing: 1.5px;
+}
+
+.flow-timestamp {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.22rem 0.65rem;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.flow-node-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
   color: var(--ghost-white);
+  letter-spacing: 0.5px;
+  margin: 0 0 0.35rem 0;
+}
+
+.flow-node-desc {
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Flowchart Connectors */
+.flow-arrow-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.flow-stem {
+  width: 2px;
+  height: 28px;
+  background: linear-gradient(to bottom, rgba(255, 42, 60, 0.5), rgba(42, 245, 216, 0.5));
+}
+
+.flow-arrow-head {
+  width: 18px;
+  height: 18px;
+  color: var(--corrupt-cyan);
+  filter: drop-shadow(0 0 5px rgba(42, 245, 216, 0.6));
+  margin-top: -3px;
+}
+
+/* Overnight Special Connector */
+.overnight-flow {
+  padding: 0.2rem 0;
+}
+
+.overnight-flow .flow-stem {
+  height: 20px;
+}
+
+.overnight-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--ghost-white);
+  background: rgba(10, 10, 14, 0.9);
+  border: 1px dashed rgba(255, 42, 60, 0.45);
+  border-radius: 20px;
+  padding: 0.35rem 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  box-shadow: 0 0 15px rgba(255, 42, 60, 0.15), inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.overnight-pill .pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--signal-red);
+  box-shadow: 0 0 8px var(--signal-red);
+  animation: pulse-glow 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes pulse-glow {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
 }
 
 .venue-content {
@@ -1906,21 +2059,61 @@ a {
   }
 
   .track-meta {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.9rem 1rem;
+    display: grid;
+    grid-template-columns: max-content;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 1.4rem 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
   .meta-item {
-    gap: 0.5rem;
-    font-size: 0.82rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.05rem;
+    width: 100%;
   }
 
   .meta-icon {
-    width: 22px;
-    height: 22px;
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+  }
+
+  .flowchart-container {
+    padding: 0 0.5rem;
+  }
+
+  .flow-node {
+    padding: 1.15rem 1.25rem;
+  }
+
+  .flow-node-title {
+    font-size: 1.15rem;
+  }
+
+  .flow-node-desc {
+    font-size: 0.82rem;
+  }
+
+  .flow-timestamp {
+    font-size: 0.78rem;
+    padding: 0.2rem 0.55rem;
+  }
+
+  .flow-stem {
+    height: 24px;
+  }
+
+  .overnight-flow .flow-stem {
+    height: 18px;
+  }
+
+  .overnight-pill {
+    font-size: 0.72rem;
+    padding: 0.3rem 0.75rem;
   }
 
   .associate-grid {
@@ -2171,18 +2364,61 @@ a {
 
 @media (max-width: 480px) {
   .track-meta {
-    padding: 0.8rem 0.5rem;
-    gap: 0.35rem;
+    grid-template-columns: max-content;
+    justify-content: center;
+    padding: 1.25rem 1rem;
+    gap: 1.05rem;
   }
 
   .meta-item {
-    gap: 0.35rem;
-    font-size: 0.72rem;
+    gap: 0.9rem;
+    font-size: 0.95rem;
   }
 
   .meta-icon {
-    width: 19px;
-    height: 19px;
+    width: 26px;
+    height: 26px;
+  }
+
+  .flowchart-container {
+    padding: 0;
+  }
+
+  .flow-node {
+    padding: 1rem 1rem;
+    border-radius: 6px;
+  }
+
+  .flow-node-title {
+    font-size: 1.05rem;
+  }
+
+  .flow-node-desc {
+    font-size: 0.78rem;
+    line-height: 1.4;
+  }
+
+  .flow-step-tag {
+    font-size: 0.68rem;
+  }
+
+  .flow-timestamp {
+    font-size: 0.74rem;
+    padding: 0.18rem 0.45rem;
+  }
+
+  .overnight-pill {
+    font-size: 0.66rem;
+    padding: 0.25rem 0.65rem;
+    gap: 0.4rem;
+  }
+
+  .flow-stem {
+    height: 20px;
+  }
+
+  .overnight-flow .flow-stem {
+    height: 14px;
   }
 
   .reg-card {

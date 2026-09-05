@@ -33,7 +33,7 @@
     <!-- Navbar -->
     <nav id="navbar" class="glass-panel">
         <a href="#boot" class="nav-brand" style="text-decoration: none;">
-            <img src="assets/logo/throttle logo.png" alt="THROTTLE" class="nav-logo">
+            <img src="assets/logo/throttle logo.png" alt="THROTTLE" class="nav-logo" decoding="async">
         </a>
         <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle Navigation">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -43,7 +43,7 @@
         <div class="nav-links" id="nav-links">
             <a href="#breach">ABOUT</a>
             <a href="#tracks">TRACKS</a>
-            <!-- <a href="#timeline">TIMELINE</a> -->
+            <a href="#timeline">TIMELINE</a>
             <a href="#location">LOCATION</a>
             <!-- <a href="#sponsors">SPONSORS</a> -->
             <a href="#shutdown" class="nav-cta">REGISTER</a>
@@ -56,7 +56,7 @@
             <div class="terminal-window">
                 <div id="main-title">
                     <div class="logo-float-wrapper">
-                        <img src="assets/logo/throttle logo 26.png" alt="THROTTLE '26" class="hero-logo">
+                        <img src="assets/logo/throttle logo 26.png" alt="THROTTLE '26" class="hero-logo" decoding="async">
                     </div>
                     <!-- 
                     <div class="desktop-only-title">
@@ -89,7 +89,7 @@
                         <div class="hero-organizer-badge">
                             <span class="organizer-label">> ORGANIZED_BY:</span>
                             <span class="organizer-club-pill">
-                                <img src="assets/logo/hack club logo.png" alt="Hack Club RSET" class="hero-club-logo">
+                                <img src="assets/logo/hack club logo.png" alt="Hack Club RSET" class="hero-club-logo" decoding="async">
                                 <span class="organizer-name">Hack Club RSET</span>
                             </span>
                         </div>
@@ -115,7 +115,7 @@
         <div class="decrypted-file glass-panel">
             <div class="breach-identity-bar">
                 <div class="identity-badge">
-                    <img src="assets/logo/hack club logo.png" alt="Hack Club RSET" class="identity-logo">
+                    <img src="assets/logo/hack club logo.png" alt="Hack Club RSET" class="identity-logo" loading="lazy" decoding="async">
                     <div class="identity-text">
                         <span class="identity-role">ORGANIZER //</span>
                         <span class="identity-title">HACK CLUB RSET</span>
@@ -123,7 +123,7 @@
                 </div>
                 <div class="identity-divider">//</div>
                 <div class="identity-badge">
-                    <img src="assets/logo/rset logo.png" alt="RSET" class="identity-logo">
+                    <img src="assets/logo/rset logo.png" alt="RSET" class="identity-logo" loading="lazy" decoding="async">
                     <div class="identity-text">
                         <span class="identity-role">HOST CAMPUS //</span>
                         <span class="identity-title">RAJAGIRI SCHOOL OF ENG. & TECH.</span>
@@ -367,32 +367,108 @@
         </div>
     </section>
 
-    <!-- System Log (Timeline & Venue) -->
-    <!--
+    <!-- Timeline / Schedule -->
     <section id="timeline" class="content-wrapper content-section fade-in">
         <div class="section-header">
-            <span class="eyebrow">>_ MORE THAN A HACKATHON</span>
+            <span class="eyebrow">>_ EVENT SCHEDULE</span>
             <div class="header-with-icon">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
-                <h2 class="glitch-text" data-text="SYSTEM LOG">SYSTEM LOG</h2>
+                <h2 class="glitch-text" data-text="TIMELINE">TIMELINE</h2>
             </div>
         </div>
-        <div class="log-container glass-panel" id="sys-log">
-            <div class="log-line"><span class="timestamp">[TBD_TIME]</span> <span class="log-msg">STATUS: Venue RSET
-                    Kakkanad online.</span></div>
-            <div class="log-line"><span class="timestamp">[TBD_TIME]</span> <span class="log-msg">EVENT: Glitch Hour
-                    initiated.</span></div>
-            <div class="log-line"><span class="timestamp">[TBD_TIME]</span> <span class="log-msg">EVENT: Karaoke Corner
-                    unlocked.</span></div>
-            <div class="log-line"><span class="timestamp">[TBD_TIME]</span> <span class="log-msg">EVENT: Polaroid Memory
-                    Wall active.</span></div>
-            <div class="log-line"><span class="timestamp">[TBD_TIME]</span> <span class="log-msg">EVENT: Sunrise Chai &
-                    Midnight Snacks deployed.</span></div>
+
+        <div class="flowchart-container" id="sys-log">
+            <!-- Step 1 -->
+            <div class="flow-node flow-node-red">
+                <div class="flow-node-header">
+                    <span class="flow-step-tag">PHASE 01</span>
+                    <span class="flow-timestamp">04:30 PM</span>
+                </div>
+                <h3 class="flow-node-title">Check-In & Team Reporting</h3>
+                <p class="flow-node-desc">Doors open, team registration, badge collection & desk setup</p>
+            </div>
+
+            <!-- Connector 1 -->
+            <div class="flow-arrow-wrap">
+                <div class="flow-stem"></div>
+                <svg class="flow-arrow-head" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="flow-node flow-node-red">
+                <div class="flow-node-header">
+                    <span class="flow-step-tag">PHASE 02</span>
+                    <span class="flow-timestamp">05:00 PM</span>
+                </div>
+                <h3 class="flow-node-title">Opening Ceremony & Kickoff</h3>
+                <p class="flow-node-desc">Event briefing, CTF challenges live & hackathon problem statements unlocked</p>
+            </div>
+
+            <!-- Overnight Connector -->
+            <div class="flow-arrow-wrap overnight-flow">
+                <div class="flow-stem"></div>
+                <div class="overnight-pill">
+                    <span class="pulse-dot"></span>
+                    <span>16-HOUR OVERNIGHT SPRINT</span>
+                </div>
+                <div class="flow-stem"></div>
+                <svg class="flow-arrow-head" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="flow-node flow-node-cyan">
+                <div class="flow-node-header">
+                    <span class="flow-step-tag">PHASE 03</span>
+                    <span class="flow-timestamp">09:00 AM</span>
+                </div>
+                <h3 class="flow-node-title">Hacking Ends & Project Submission</h3>
+                <p class="flow-node-desc">Code freeze, repository submission & evaluation by mentors</p>
+            </div>
+
+            <!-- Connector 3 -->
+            <div class="flow-arrow-wrap">
+                <div class="flow-stem"></div>
+                <svg class="flow-arrow-head" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="flow-node flow-node-cyan">
+                <div class="flow-node-header">
+                    <span class="flow-step-tag">PHASE 04</span>
+                    <span class="flow-timestamp">09:15 AM</span>
+                </div>
+                <h3 class="flow-node-title">Prize Distribution & Awards</h3>
+                <p class="flow-node-desc">Winner announcements, prize pool rewards & felicitations</p>
+            </div>
+
+            <!-- Connector 4 -->
+            <div class="flow-arrow-wrap">
+                <div class="flow-stem"></div>
+                <svg class="flow-arrow-head" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="flow-node flow-node-cyan">
+                <div class="flow-node-header">
+                    <span class="flow-step-tag">PHASE 05</span>
+                    <span class="flow-timestamp">09:30 AM</span>
+                </div>
+                <h3 class="flow-node-title">Closing Ceremony & Wrap-Up</h3>
+                <p class="flow-node-desc">Group photos, networking session & official event conclusion</p>
+            </div>
         </div>
     </section>
-    -->
 
     <!-- Location -->
     <section id="location" class="content-wrapper content-section fade-in">
@@ -411,7 +487,7 @@
             <div class="venue-content">
                 <div class="geolocate-data">
                     <div class="venue-title-lockup">
-                        <img src="assets/logo/rset logo.png" alt="RSET College Crest" class="venue-college-logo">
+                        <img src="assets/logo/rset logo.png" alt="RSET College Crest" class="venue-college-logo" loading="lazy" decoding="async">
                         <div class="venue-text-details">
                             <h3 class="venue-name text-red">RAJAGIRI SCHOOL OF ENGINEERING & TECHNOLOGY</h3>
                             <p>Kakkanad, Kochi, Kerala 682039</p>
@@ -648,12 +724,12 @@
                 <div class="footer-logos-group">
                     <a href="https://instagram.com/hackclubrset" target="_blank" rel="noopener noreferrer"
                         class="footer-logo-wrap" title="Hack Club RSET">
-                        <img src="assets/logo/hack club logo.png" alt="Hack Club RSET" class="footer-brand-logo">
+                        <img src="assets/logo/hack club logo.png" alt="Hack Club RSET" class="footer-brand-logo" loading="lazy" decoding="async">
                     </a>
                     <span class="footer-brand-slash">//</span>
                     <a href="https://www.rajagiritech.ac.in/" target="_blank" rel="noopener noreferrer"
                         class="footer-logo-wrap" title="Rajagiri School of Engineering & Technology">
-                        <img src="assets/logo/rset logo.png" alt="RSET" class="footer-brand-logo">
+                        <img src="assets/logo/rset logo.png" alt="RSET" class="footer-brand-logo" loading="lazy" decoding="async">
                     </a>
                 </div>
                 <div class="footer-brand-meta">
