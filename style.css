@@ -871,6 +871,28 @@ a {
   transform: translateY(-2px);
 }
 
+.track-btn-disabled {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--static-grey);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+  cursor: not-allowed !important;
+  opacity: 0.65;
+  pointer-events: auto;
+  font-size: 0.84rem;
+  letter-spacing: 0.5px;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.track-btn-disabled:hover {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--static-grey);
+  box-shadow: none;
+  transform: none;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
 .track-reg-btn .btn-arrow {
   font-size: 1.1rem;
   transition: transform 0.25s ease;
@@ -1473,6 +1495,23 @@ a {
   transform: translateY(-3px);
 }
 
+/* Disabled Registration Card */
+.reg-card.reg-card-disabled {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.02) 0%, rgba(12, 12, 15, 0.95) 100%);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+  cursor: not-allowed !important;
+  opacity: 0.65;
+  transition: opacity 0.25s ease, border-color 0.25s ease;
+}
+
+.reg-card.reg-card-disabled:hover {
+  transform: none !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4) !important;
+  border-color: rgba(255, 179, 71, 0.3) !important;
+  opacity: 0.75;
+}
+
 /* Card Header */
 .reg-card-header {
   display: flex;
@@ -1505,6 +1544,12 @@ a {
   border: 1px solid rgba(42, 245, 216, 0.25);
 }
 
+.badge-muted {
+  color: var(--static-grey);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
 .live-dot {
   width: 8px;
   height: 8px;
@@ -1524,6 +1569,12 @@ a {
   animation: regDotPulseCyan 2s infinite;
 }
 
+.dot-amber {
+  background-color: #FFB347;
+  box-shadow: 0 0 4px #FFB347;
+  animation: regDotPulseAmber 2.5s infinite;
+}
+
 @keyframes regDotPulseRed {
   0% { transform: scale(0.9); opacity: 0.7; }
   50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 7px rgba(255, 42, 60, 0.5); }
@@ -1536,6 +1587,12 @@ a {
   100% { transform: scale(0.9); opacity: 0.7; }
 }
 
+@keyframes regDotPulseAmber {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  50% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 7px rgba(255, 179, 71, 0.7); }
+  100% { transform: scale(0.9); opacity: 0.6; }
+}
+
 .reg-portal-status {
   font-size: 0.75rem;
   color: var(--static-grey);
@@ -1545,8 +1602,17 @@ a {
   transition: color 0.3s ease;
 }
 
+.reg-portal-status.status-sold-out {
+  color: #FFB347;
+}
+
 .reg-card:hover .reg-portal-status {
   color: var(--ghost-white);
+}
+
+.reg-card.reg-card-disabled:hover .reg-portal-status.status-sold-out {
+  color: #FFC069;
+  text-shadow: 0 0 8px rgba(255, 179, 71, 0.4);
 }
 
 /* Card Content */
@@ -1595,6 +1661,17 @@ a {
   border-color: rgba(42, 245, 216, 0.5);
   box-shadow: 0 0 10px rgba(42, 245, 216, 0.2);
   transform: scale(1.04);
+}
+
+.icon-muted {
+  color: var(--static-grey);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.reg-card.reg-card-disabled:hover .icon-muted {
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: none;
+  transform: none;
 }
 
 .reg-card-text {
@@ -1656,6 +1733,34 @@ a {
   background: var(--corrupt-cyan);
   color: #0A0A0C;
   box-shadow: 0 4px 14px rgba(42, 245, 216, 0.3);
+}
+
+.cta-disabled {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--static-grey);
+  box-shadow: none;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: not-allowed !important;
+}
+
+.reg-card.reg-card-disabled:hover .cta-disabled {
+  background: rgba(255, 255, 255, 0.06);
+  color: #D4D4DC;
+  border-color: rgba(255, 179, 71, 0.3);
+}
+
+.cta-lock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: #FFB347;
+}
+
+.cta-lock svg {
+  width: 16px;
+  height: 16px;
 }
 
 .cta-prefix {
@@ -2322,6 +2427,10 @@ a {
 
   .reg-card:active {
     transform: scale(0.985);
+  }
+
+  .reg-card.reg-card-disabled:active {
+    transform: none !important;
   }
 
   .reg-cta-button {

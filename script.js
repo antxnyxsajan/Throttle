@@ -1,4 +1,43 @@
+// =========================================================================
+// REGISTRATION STATUS MASTER TOGGLE
+// Set to `true` to OPEN registration, or `false` to mark as SOLD OUT.
+// -------------------------------------------------------------------------
+// TO REOPEN HACKATHON REGISTRATIONS: Simply change `hackathon: true` below!
+// =========================================================================
+const REGISTRATION_CONFIG = {
+    ctf: true,          // Break//In (CTF) - currently OPEN
+    hackathon: false    // Build//Out (Hackathon) - change to true to REOPEN!
+};
+
 document.addEventListener('DOMContentLoaded', () => {
+
+    // --- Registration Status Controller ---
+    const updateRegistrationStatus = () => {
+        const hackOpenBtn = document.getElementById('track-hack-open-btn');
+        const hackClosedBtn = document.getElementById('track-hack-closed-btn');
+        const hackOpenCard = document.getElementById('reg-hack-open-card');
+        const hackClosedCard = document.getElementById('reg-hack-closed-card');
+
+        if (REGISTRATION_CONFIG.hackathon) {
+            if (hackOpenBtn) hackOpenBtn.style.display = 'flex';
+            if (hackClosedBtn) hackClosedBtn.style.display = 'none';
+            if (hackOpenCard) hackOpenCard.style.display = 'flex';
+            if (hackClosedCard) hackClosedCard.style.display = 'none';
+        } else {
+            if (hackOpenBtn) hackOpenBtn.style.display = 'none';
+            if (hackClosedBtn) hackClosedBtn.style.display = 'flex';
+            if (hackOpenCard) hackOpenCard.style.display = 'none';
+            if (hackClosedCard) hackClosedCard.style.display = 'flex';
+        }
+    };
+    updateRegistrationStatus();
+
+    // Browser console helper: window.toggleHackathonRegistration(true/false)
+    window.toggleHackathonRegistration = (isOpen) => {
+        REGISTRATION_CONFIG.hackathon = isOpen;
+        updateRegistrationStatus();
+        console.log(`[THROTTLE] Hackathon registration status: ${isOpen ? 'OPEN' : 'SOLD OUT'}`);
+    };
 
     // --- Preloader (1s Simple Shutter) ---
     const loaderScreen = document.getElementById('loader-screen');
@@ -40,12 +79,26 @@ document.addEventListener('DOMContentLoaded', () => {
             cursor.style.opacity = '0';
         });
 
-        const clickables = document.querySelectorAll('a, button, .reg-btn, .flow-node');
+        const clickables = document.querySelectorAll('a, button:not([disabled]):not(.track-btn-disabled), .reg-btn:not(.reg-card-disabled), .flow-node');
         clickables.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursor.textContent = ">_";
                 cursor.style.textShadow = "0 0 10px var(--corrupt-cyan)";
                 cursor.style.color = "var(--corrupt-cyan)";
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.textContent = "█";
+                cursor.style.textShadow = "0 0 5px var(--signal-red)";
+                cursor.style.color = "var(--signal-red)";
+            });
+        });
+
+        const disabledElements = document.querySelectorAll('[disabled], .track-btn-disabled, .reg-card-disabled');
+        disabledElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.textContent = "✕";
+                cursor.style.textShadow = "0 0 8px #FFB347";
+                cursor.style.color = "#FFB347";
             });
             el.addEventListener('mouseleave', () => {
                 cursor.textContent = "█";
