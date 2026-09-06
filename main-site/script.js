@@ -1,18 +1,43 @@
 // =========================================================================
-// REGISTRATION STATUS MASTER TOGGLE
-// Set to `true` to OPEN registration, or `false` to mark as SOLD OUT.
+// REGISTRATION & POPUP MASTER CONTROLS
 // -------------------------------------------------------------------------
-// TO REOPEN HACKATHON REGISTRATIONS: Simply change `hackathon: true` below!
+// • ctf:                     true = OPEN, false = SOLD OUT
+// • hackathon:               true = OPEN, false = SOLD OUT
+// • showDisclaimerCtf:       true = SHOW warning dialog before CTF registration
+//                            false = SKIP warning & go directly to KonfHub
+// • showDisclaimerHackathon: true = SHOW warning dialog before Hackathon registration
+//                            false = SKIP warning & go directly to KonfHub
 // =========================================================================
 const REGISTRATION_CONFIG = {
-    ctf: true,          // Break//In (CTF) - currently OPEN
-    hackathon: false    // Build//Out (Hackathon) - change to true to REOPEN!
+    ctf: false,                     // Break//In (CTF): true = OPEN, false = SOLD OUT
+    hackathon: false,               // Build//Out (Hackathon): true = OPEN, false = SOLD OUT
+    showDisclaimerCtf: false,        // CTF Warning Modal: true = ON, false = DIRECT TO KONFHUB
+    showDisclaimerHackathon: false   // Hackathon Warning Modal: true = ON, false = DIRECT TO KONFHUB
 };
 
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- Registration Status Controller ---
     const updateRegistrationStatus = () => {
+        // 1. CTF Track (Break//In)
+        const ctfOpenBtn = document.getElementById('track-ctf-open-btn');
+        const ctfClosedBtn = document.getElementById('track-ctf-closed-btn');
+        const ctfOpenCard = document.getElementById('reg-ctf-open-card');
+        const ctfClosedCard = document.getElementById('reg-ctf-closed-card');
+
+        if (REGISTRATION_CONFIG.ctf) {
+            if (ctfOpenBtn) ctfOpenBtn.style.display = 'flex';
+            if (ctfClosedBtn) ctfClosedBtn.style.display = 'none';
+            if (ctfOpenCard) ctfOpenCard.style.display = 'flex';
+            if (ctfClosedCard) ctfClosedCard.style.display = 'none';
+        } else {
+            if (ctfOpenBtn) ctfOpenBtn.style.display = 'none';
+            if (ctfClosedBtn) ctfClosedBtn.style.display = 'flex';
+            if (ctfOpenCard) ctfOpenCard.style.display = 'none';
+            if (ctfClosedCard) ctfClosedCard.style.display = 'flex';
+        }
+
+        // 2. Hackathon Track (Build//Out)
         const hackOpenBtn = document.getElementById('track-hack-open-btn');
         const hackClosedBtn = document.getElementById('track-hack-closed-btn');
         const hackOpenCard = document.getElementById('reg-hack-open-card');
@@ -32,11 +57,17 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     updateRegistrationStatus();
 
-    // Browser console helper: window.toggleHackathonRegistration(true/false)
-    window.toggleHackathonRegistration = (isOpen) => {
-        REGISTRATION_CONFIG.hackathon = isOpen;
+    // Browser console helpers for quick testing & live toggling
+    window.toggleCtfRegistration = (isOpen) => {
+        REGISTRATION_CONFIG.ctf = Boolean(isOpen);
         updateRegistrationStatus();
-        console.log(`[THROTTLE] Hackathon registration status: ${isOpen ? 'OPEN' : 'SOLD OUT'}`);
+        console.log(`[THROTTLE] CTF registration status: ${REGISTRATION_CONFIG.ctf ? 'OPEN' : 'SOLD OUT'}`);
+    };
+
+    window.toggleHackathonRegistration = (isOpen) => {
+        REGISTRATION_CONFIG.hackathon = Boolean(isOpen);
+        updateRegistrationStatus();
+        console.log(`[THROTTLE] Hackathon registration status: ${REGISTRATION_CONFIG.hackathon ? 'OPEN' : 'SOLD OUT'}`);
     };
 
     // --- Preloader (1s Simple Shutter) ---
@@ -79,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cursor.style.opacity = '0';
         });
 
-        const clickables = document.querySelectorAll('a, button:not([disabled]):not(.track-btn-disabled), .reg-btn:not(.reg-card-disabled), .flow-node');
+        const clickables = document.querySelectorAll('a, button:not([disabled]):not(.track-btn-disabled):not(#modal-btn-no):not(#modal-close-icon), .reg-btn:not(.reg-card-disabled), .flow-node');
         clickables.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursor.textContent = ">_";
@@ -99,6 +130,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 cursor.textContent = "✕";
                 cursor.style.textShadow = "0 0 8px #FFB347";
                 cursor.style.color = "#FFB347";
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.textContent = "█";
+                cursor.style.textShadow = "0 0 5px var(--signal-red)";
+                cursor.style.color = "var(--signal-red)";
+            });
+        });
+
+        const modalAbortButtons = document.querySelectorAll('#modal-btn-no, #modal-close-icon');
+        modalAbortButtons.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.textContent = "✕";
+                cursor.style.textShadow = "0 0 8px var(--signal-red)";
+                cursor.style.color = "var(--signal-red)";
             });
             el.addEventListener('mouseleave', () => {
                 cursor.textContent = "█";
@@ -336,5 +381,101 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateCountdown();
     countdownInterval = setInterval(updateCountdown, 1000);
+
+    // --- Registration Disclaimer Modal Logic ---
+    const modal = document.getElementById('disclaimer-modal');
+    const modalBackdrop = document.getElementById('modal-backdrop');
+    const modalCloseBtn = document.getElementById('modal-close-icon');
+    const modalBtnNo = document.getElementById('modal-btn-no');
+    const modalBtnYes = document.getElementById('modal-btn-yes');
+
+    function openDisclaimerModal(targetUrl) {
+        if (!modal || !modalBtnYes) return;
+        modalBtnYes.setAttribute('href', targetUrl);
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeDisclaimerModal() {
+        if (!modal) return;
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    if (modalBtnNo) {
+        modalBtnNo.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeDisclaimerModal();
+        });
+    }
+
+    if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeDisclaimerModal();
+        });
+    }
+
+    if (modalBackdrop) {
+        modalBackdrop.addEventListener('click', closeDisclaimerModal);
+    }
+
+    if (modalBtnYes) {
+        modalBtnYes.addEventListener('click', () => {
+            setTimeout(closeDisclaimerModal, 200);
+        });
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+            closeDisclaimerModal();
+        }
+    });
+
+    // Browser console helpers for quick testing & live toggling
+    window.toggleCtfDisclaimer = (show) => {
+        REGISTRATION_CONFIG.showDisclaimerCtf = Boolean(show);
+        console.log(`[THROTTLE] CTF disclaimer modal: ${REGISTRATION_CONFIG.showDisclaimerCtf ? 'ENABLED (Popup will show)' : 'DISABLED (Direct redirect)'}`);
+    };
+
+    window.toggleHackathonDisclaimer = (show) => {
+        REGISTRATION_CONFIG.showDisclaimerHackathon = Boolean(show);
+        console.log(`[THROTTLE] Hackathon disclaimer modal: ${REGISTRATION_CONFIG.showDisclaimerHackathon ? 'ENABLED (Popup will show)' : 'DISABLED (Direct redirect)'}`);
+    };
+
+    window.toggleDisclaimer = (show) => {
+        REGISTRATION_CONFIG.showDisclaimerCtf = Boolean(show);
+        REGISTRATION_CONFIG.showDisclaimerHackathon = Boolean(show);
+        console.log(`[THROTTLE] All disclaimer modals: ${Boolean(show) ? 'ENABLED' : 'DISABLED'}`);
+    };
+
+    window.previewDisclaimer = (url = 'https://konfhub.com/ctf-throttle') => {
+        openDisclaimerModal(url);
+    };
+
+    // Intercept clicks on all active registration links (CTF & open Hackathon)
+    const activeRegLinks = document.querySelectorAll('a[href*="konfhub.com"]');
+    activeRegLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const targetUrl = link.getAttribute('href') || '';
+            const isCtf = targetUrl.includes('ctf') || link.id.includes('ctf');
+            const isHack = targetUrl.includes('hackathon') || link.id.includes('hack');
+
+            const shouldShowDisclaimer = isCtf
+                ? REGISTRATION_CONFIG.showDisclaimerCtf
+                : (isHack ? REGISTRATION_CONFIG.showDisclaimerHackathon : (REGISTRATION_CONFIG.showDisclaimerCtf || REGISTRATION_CONFIG.showDisclaimerHackathon));
+
+            // If disclaimer is turned off for this track, allow natural direct navigation to KonfHub!
+            if (!shouldShowDisclaimer) {
+                return;
+            }
+            e.preventDefault();
+            if (targetUrl && targetUrl !== '#') {
+                openDisclaimerModal(targetUrl);
+            }
+        });
+    });
 
 });
