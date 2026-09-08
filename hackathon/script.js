@@ -195,6 +195,12 @@ function initCountdownTimer() {
   const progressFill = document.getElementById("sprint-progress-bar");
   const progressPercentEl = document.getElementById("progress-percent-val");
   const statusIndicator = document.getElementById("timer-status-text");
+  const statusIndicatorMobile = document.getElementById("timer-status-mobile");
+
+  function setStatus(desktopText, mobileText) {
+    if (statusIndicator) statusIndicator.textContent = desktopText;
+    if (statusIndicatorMobile) statusIndicatorMobile.textContent = mobileText || desktopText;
+  }
 
   if (!hoursEl || !minutesEl || !secondsEl) return;
 
@@ -213,7 +219,7 @@ function initCountdownTimer() {
       hours = Math.floor(remainingMs / (1000 * 60 * 60));
       minutes = Math.floor((remainingMs % (1000 * 60 * 60)) / (1000 * 60));
       seconds = Math.floor((remainingMs % (1000 * 60)) / 1000);
-      if (statusIndicator) statusIndicator.textContent = "SIMULATED SPRINT ACTIVE // SUBMISSIONS OPEN";
+      setStatus("SIMULATED SPRINT ACTIVE // SUBMISSIONS OPEN", "SIMULATION ACTIVE");
     } else if (HACKATHON_CONFIG.progressMode === 'manual') {
       // Manual test override (0 - 100)
       percent = Math.min(100, Math.max(0, HACKATHON_CONFIG.manualProgressPercent));
@@ -227,20 +233,19 @@ function initCountdownTimer() {
       const freeze = HACKATHON_CONFIG.freezeTimestamp;
 
       if (now < kickoff) {
-        // Before event start: Countdown to freeze, progress bar at 0%
-        const diff = freeze - now;
-        hours = Math.floor(diff / (1000 * 60 * 60));
-        minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        // Before event start: Fixed to 16:00:00, countdown begins on Sep 11, 05:30 PM IST
+        hours = 16;
+        minutes = 0;
+        seconds = 0;
         percent = 0;
-        if (statusIndicator) statusIndicator.textContent = "COUNTDOWN TO CODE FREEZE";
+        setStatus("16-HOUR SPRINT // COUNTDOWN STARTS SEP 11, 05:30 PM", "STARTS SEP 11, 05:30 PM");
       } else if (now >= freeze) {
         // Event ended: 100% complete, timer at 00:00:00
         hours = 0;
         minutes = 0;
         seconds = 0;
         percent = 100;
-        if (statusIndicator) statusIndicator.textContent = "CODE FREEZE REACHED // SUBMISSIONS LOCKED";
+        setStatus("CODE FREEZE REACHED // SUBMISSIONS LOCKED", "CODE FREEZE // LOCKED");
       } else {
         // Active 16-hour sprint (Between Sep 11 5:30 PM and Sep 12 9:30 AM)
         const elapsed = now - kickoff;
@@ -249,9 +254,9 @@ function initCountdownTimer() {
         hours = Math.floor(remaining / (1000 * 60 * 60));
         minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
         seconds = Math.floor((remaining % (1000 * 60)) / 1000);
-        if (statusIndicator) {
-          statusIndicator.textContent = hours < 1 ? "FINAL SPRINT // CODE FREEZE IMMINENT" : "SPRINT ACTIVE // SUBMISSIONS OPEN";
-        }
+        const desktopMsg = hours < 1 ? "FINAL SPRINT // CODE FREEZE IMMINENT" : "SPRINT ACTIVE // SUBMISSIONS OPEN";
+        const mobileMsg = hours < 1 ? "FINAL SPRINT // FREEZE IMMINENT" : "SPRINT ACTIVE";
+        setStatus(desktopMsg, mobileMsg);
       }
     }
 

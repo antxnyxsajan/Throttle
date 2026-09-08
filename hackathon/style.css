@@ -619,6 +619,14 @@ a {
   animation: pulse-red-dot 1.2s infinite ease-in-out;
 }
 
+.status-mobile {
+  display: none !important;
+}
+
+.status-desktop {
+  display: inline !important;
+}
+
 .timer-target-tag {
   font-size: 0.78rem;
   color: var(--static-grey);
@@ -1799,9 +1807,31 @@ a {
   .timer-header-info {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.4rem;
+    gap: 0.45rem;
     padding-bottom: 0.8rem;
     margin-bottom: 1rem;
+  }
+
+  .status-desktop {
+    display: none !important;
+  }
+
+  .status-mobile {
+    display: inline !important;
+  }
+
+  .timer-status-indicator {
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    white-space: nowrap;
+    gap: 0.45rem;
+  }
+
+  .timer-status-indicator .pulse-red {
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
   }
 
   .countdown-display {
@@ -1964,6 +1994,11 @@ a {
 
   .timer-hero-box {
     padding: 1.2rem 0.6rem;
+  }
+
+  .timer-status-indicator {
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
   }
 
   .countdown-display {
