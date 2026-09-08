@@ -1,13 +1,684 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>THROTTLE Hackathon</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THROTTLE '26 // BUILD//OUT Hackathon</title>
+  <meta name="description"
+    content="Official Hackathon portal for THROTTLE '26 BUILD//OUT track. Revealed problem statements, live sprint countdown, rules, and solution submission.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;600;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>HACKATHON SITE</h1>
-    <p>This is hack.throttle26.in</p>
+
+  <!-- Scanlines, CRT & Custom Cursor -->
+  <div id="crt-overlay"></div>
+  <div id="vignette"></div>
+  <div id="custom-cursor">█</div>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-brand" title="THROTTLE '26">
+        <img src="assets/logo/throttle logo.png" alt="THROTTLE '26" class="nav-brand-logo">
+      </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Navigation Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Nav Links -->
+      <div class="nav-links" id="nav-links">
+        <a href="#hero" class="nav-link">Overview</a>
+        <a href="#problems" class="nav-link">Statements</a>
+        <a href="#rules" class="nav-link">Rules</a>
+        <a href="#criteria" class="nav-link">Criteria</a>
+        <a href="#schedule" class="nav-link">Schedule</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#submit" class="nav-cta-btn">
+          <span>SUBMIT SOLUTION</span>
+          <span>↗</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section with Live Sprint Timer -->
+  <header id="hero">
+    <div class="container hero-layout">
+
+      <!-- Top Status Bar -->
+      <div class="hero-status-bar">
+        <div class="status-left">
+          <span>THROTTLE '26</span>
+          <span>//</span>
+          <span>TRACK 02: BUILD//OUT</span>
+        </div>
+        <div class="status-right">
+          <span>VENUE: <span class="venue-pill">GALLERY HALL, RSET</span></span>
+          <span>ORGANIZED BY: <strong>HACK CLUB RSET</strong></span>
+        </div>
+      </div>
+
+      <!-- Hero Title -->
+      <div class="hero-title-group">
+        <span class="hero-eyebrow">&gt;_ 16-HOUR HACKATHON TRACK</span>
+        <h1 class="hero-main-title glitch-text" data-text="BUILD//OUT">BUILD//OUT</h1>
+        <p class="hero-subtitle">
+          Welcome to the official BUILD//OUT hackathon portal. Review the official problem statements below, track your
+          remaining sprint time, check guidelines, and submit your project before the 09:30 AM deadline.
+        </p>
+      </div>
+
+      <!-- Central Mission Timer Box -->
+      <div class="timer-hero-box">
+        <div class="timer-header-info">
+          <div class="timer-status-indicator">
+            <span class="pulse-red"></span>
+            <span id="timer-status-text">TIME REMAINING UNTIL CODE FREEZE</span>
+          </div>
+          <div class="timer-target-tag">
+            DEADLINE: <strong>SEP 12, 09:30 AM IST</strong>
+          </div>
+        </div>
+
+        <!-- Big Digits Display -->
+        <div class="countdown-display" id="sprint-countdown">
+          <div class="digit-block">
+            <span class="digit-num" id="timer-hours">11</span>
+            <span class="digit-label">HOURS</span>
+          </div>
+          <span class="digit-colon">:</span>
+          <div class="digit-block">
+            <span class="digit-num" id="timer-minutes">42</span>
+            <span class="digit-label">MINUTES</span>
+          </div>
+          <span class="digit-colon">:</span>
+          <div class="digit-block">
+            <span class="digit-num" id="timer-seconds">18</span>
+            <span class="digit-label">SECONDS</span>
+          </div>
+        </div>
+
+        <!-- 16-Hour Sprint Progress Bar -->
+        <div class="sprint-progress-wrap">
+          <div class="progress-labels">
+            <span id="sprint-kickoff-label">05:30 PM KICKOFF</span>
+            <span id="sprint-progress-center">16-HR SPRINT PROGRESS: <strong id="progress-percent-val"
+                style="color:var(--corrupt-cyan);">0%</strong></span>
+            <span id="sprint-freeze-label">09:30 AM FREEZE</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="sprint-progress-bar" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Announcement Banner -->
+      <div class="announcement-banner">
+        <span class="announcement-badge">ANNOUNCEMENT</span>
+        <span class="announcement-text">
+          Problem statements are officially revealed below. Checkpoint 01 begins at 08:30 PM. Ensure all team
+          repositories are public.
+        </span>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="hero-cta-group">
+        <a href="#problems" class="btn-primary-cyan">
+          <span>EXPLORE 5 PROBLEM STATEMENTS</span>
+          <span>↓</span>
+        </a>
+        <a href="#submit" class="btn-secondary-cyan">
+          <span>SUBMIT YOUR PROJECT</span>
+          <span>↗</span>
+        </a>
+      </div>
+
+      <!-- Quick Metrics -->
+      <div class="metrics-grid">
+        <div class="metric-item">
+          <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <div>
+            <span class="metric-label">Hackathon Venue</span>
+            <span class="metric-val">Gallery Hall, RSET</span>
+          </div>
+        </div>
+
+        <div class="metric-item">
+          <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          <div>
+            <span class="metric-label">Team Size</span>
+            <span class="metric-val">3 - 4 Members</span>
+          </div>
+        </div>
+
+        <div class="metric-item">
+          <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <div>
+            <span class="metric-label">Sprint Duration</span>
+            <span class="metric-val">16 Hours Non-Stop</span>
+          </div>
+        </div>
+
+        <div class="metric-item">
+          <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <div>
+            <span class="metric-label">Track Prize Pool</span>
+            <span class="metric-val text-cyan">₹10,000 Cash Pool</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MID SECTION: REVEALED PROBLEM STATEMENTS (5 Cards from PS.pdf) -->
+  <section id="problems" class="section-padding">
+    <div class="container">
+      <div class="hud-header">
+        <span class="hud-tag">
+          <span class="blink"></span>
+          <span>// OFFICIAL CHALLENGES</span>
+        </span>
+        <h2 class="section-title">
+          <span>PROBLEM</span> <span class="cyan-text">STATEMENTS</span>
+        </h2>
+        <p class="section-desc">
+          Choose one problem statement for your team. Click "View Details" on any card to read the complete context,
+          requirements, and judging criteria from the official brief.
+        </p>
+      </div>
+
+      <!-- Problem Statements List (Rendered dynamically from PS.pdf data) -->
+      <div class="problem-statements-list" id="problems-list">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- GENERAL HACKATHON RULES -->
+  <section id="rules" class="section-padding">
+    <div class="container">
+      <div class="hud-header">
+        <span class="hud-tag">
+          <span class="blink"></span>
+          <span>// GENERAL GUIDELINES</span>
+        </span>
+        <h2 class="section-title">
+          <span>HACKATHON</span> <span class="cyan-text">RULES</span>
+        </h2>
+        <p class="section-desc">
+          Official guidelines and requirements applicable to all participating teams.
+        </p>
+      </div>
+
+      <div class="rules-grid">
+        <div class="rule-card glass-card">
+          <div class="rule-num-tag">
+            <span>RULE 01</span>
+            <svg class="rule-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h3 class="rule-title">Team Size</h3>
+          <p class="rule-desc">
+            Teams must consist of <strong>3–5 members</strong>. Cross-team collaboration on code during the event is
+            strictly prohibited.
+          </p>
+        </div>
+
+        <div class="rule-card glass-card">
+          <div class="rule-num-tag">
+            <span>RULE 02</span>
+            <svg class="rule-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
+          <h3 class="rule-title">Deliverables</h3>
+          <p class="rule-desc">
+            A working prototype (not just a slide deck), a 3–5 minute live demo, and a one-page technical write-up
+            explaining your architecture, trade-offs, and mechanism design.
+          </p>
+        </div>
+
+        <div class="rule-card glass-card">
+          <div class="rule-num-tag">
+            <span>RULE 03</span>
+            <svg class="rule-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <h3 class="rule-title">Open Tech Stack</h3>
+          <p class="rule-desc">
+            Completely open. Use whatever programming languages, frameworks, or open-source libraries you can defend
+            during the live demo.
+          </p>
+        </div>
+
+        <div class="rule-card glass-card">
+          <div class="rule-num-tag">
+            <span>RULE 04</span>
+            <svg class="rule-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </div>
+          <h3 class="rule-title">Chaos Injection Clause</h3>
+          <p class="rule-desc">
+            Judges reserve the right to inject standardized chaos scenarios into your live demo (e.g., GPS dropouts,
+            bursts of adjournments, or sudden solar crashes) to test resilience.
+          </p>
+        </div>
+
+        <div class="rule-card glass-card">
+          <div class="rule-num-tag">
+            <span>RULE 05</span>
+            <svg class="rule-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+              </polygon>
+            </svg>
+          </div>
+          <h3 class="rule-title">AI Tool Usage</h3>
+          <p class="rule-desc">
+            AI assistants are permitted, but submissions are judged on the quality and depth of product logic, state
+            management, and constraint satisfaction. Thin prompt wrappers will be disqualified.
+          </p>
+        </div>
+
+        <div class="rule-card glass-card">
+          <div class="rule-num-tag">
+            <span>RULE 06</span>
+            <svg class="rule-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2a10 10 0 0 1 10 10c0 5.5-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2z"></path>
+              <path d="M12 6v6l4 2"></path>
+            </svg>
+          </div>
+          <h3 class="rule-title">Original Code &amp; Demo</h3>
+          <p class="rule-desc">
+            No pre-built solutions. Repositories created before the event start time will be disqualified. Each team
+            gets 5 minutes (3 min demo + 2 min Q&amp;A) on their own machine.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVALUATION CRITERIA MATRIX -->
+  <section id="criteria" class="section-padding">
+    <div class="container">
+      <div class="hud-header">
+        <span class="hud-tag">
+          <span class="blink"></span>
+          <span>// SCORING OVERVIEW</span>
+        </span>
+        <h2 class="section-title">
+          <span>JUDGING</span> <span class="cyan-text">CRITERIA</span>
+        </h2>
+        <p class="section-desc">
+          Each problem statement includes domain-specific criteria (viewable in the problem details). General weightage
+          focuses on:
+        </p>
+      </div>
+
+      <div class="criteria-grid">
+        <div class="criterion-card glass-card">
+          <span class="criterion-percent">25%</span>
+          <h3 class="criterion-title">Technical Execution</h3>
+          <p class="criterion-desc">Architectural robustness, code cleanliness, and stability under streaming or
+            accelerated data.</p>
+        </div>
+
+        <div class="criterion-card glass-card">
+          <span class="criterion-percent">25%</span>
+          <h3 class="criterion-title">Problem Solving</h3>
+          <p class="criterion-desc">Accuracy of business logic, optimization under hard constraints, and novelty of
+            approach.</p>
+        </div>
+
+        <div class="criterion-card glass-card">
+          <span class="criterion-percent">20%</span>
+          <h3 class="criterion-title">UI / UX Polish</h3>
+          <p class="criterion-desc">Clarity of operations dashboards, responsive layouts, and intuitive user workflows.
+          </p>
+        </div>
+
+        <div class="criterion-card glass-card">
+          <span class="criterion-percent">20%</span>
+          <h3 class="criterion-title">Real-World Feasibility</h3>
+          <p class="criterion-desc">Practical viability under field conditions, edge-case resilience, and chaos
+            tolerance.</p>
+        </div>
+
+        <div class="criterion-card glass-card">
+          <span class="criterion-percent">10%</span>
+          <h3 class="criterion-title">Live Demo &amp; Q&amp;A</h3>
+          <p class="criterion-desc">Clarity of live demonstration on your own machine and confident defense during jury
+            Q&amp;A.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPRINT TIMELINE -->
+  <section id="schedule" class="section-padding">
+    <div class="container">
+      <div class="hud-header">
+        <span class="hud-tag">
+          <span class="blink"></span>
+          <span>// TIMELINE</span>
+        </span>
+        <h2 class="section-title">
+          <span>EVENT</span> <span class="cyan-text">SCHEDULE</span>
+        </h2>
+        <p class="section-desc">
+          Milestones across the 16-hour hackathon sprint.
+        </p>
+      </div>
+
+      <div class="timeline-track">
+        <div class="timeline-node">
+          <div class="timeline-dot"></div>
+          <div class="timeline-node-card">
+            <div class="timeline-info">
+              <h4>Kickoff &amp; Problem Statements Unlocked</h4>
+              <p>Opening briefing, desk setup, network distribution, and challenge revelation.</p>
+            </div>
+            <span class="timeline-time-badge">05:30 PM (DAY 1)</span>
+          </div>
+        </div>
+
+        <div class="timeline-node">
+          <div class="timeline-dot"></div>
+          <div class="timeline-node-card">
+            <div class="timeline-info">
+              <h4>Mentoring Checkpoint 01</h4>
+              <p>Architecture review, scope validation, and technical feedback with mentors.</p>
+            </div>
+            <span class="timeline-time-badge">08:30 PM (DAY 1)</span>
+          </div>
+        </div>
+
+        <div class="timeline-node">
+          <div class="timeline-dot"></div>
+          <div class="timeline-node-card">
+            <div class="timeline-info">
+              <h4>Midnight Coding Sprint &amp; Refreshments</h4>
+              <p>Energy drinks, snacks, and deep focus sprint through the night.</p>
+            </div>
+            <span class="timeline-time-badge">12:00 AM (MIDNIGHT)</span>
+          </div>
+        </div>
+
+        <div class="timeline-node">
+          <div class="timeline-dot"></div>
+          <div class="timeline-node-card">
+            <div class="timeline-info">
+              <h4>Mentoring Checkpoint 02</h4>
+              <p>Prototype dry-run, demo readiness check, and presentation refinement.</p>
+            </div>
+            <span class="timeline-time-badge">06:00 AM (DAY 2)</span>
+          </div>
+        </div>
+
+        <div class="timeline-node highlight-freeze">
+          <div class="timeline-dot"></div>
+          <div class="timeline-node-card">
+            <div class="timeline-info">
+              <h4 style="color:var(--signal-red);">CODE FREEZE &amp; FINAL SUBMISSION DEADLINE</h4>
+              <p>Final git push freeze and project submission via the link below.</p>
+            </div>
+            <span class="timeline-time-badge">09:30 AM SHARP</span>
+          </div>
+        </div>
+
+        <div class="timeline-node">
+          <div class="timeline-dot"></div>
+          <div class="timeline-node-card">
+            <div class="timeline-info">
+              <h4>Live Demos &amp; Pitching Rounds</h4>
+              <p>5-minute project presentations (3 min demo + 2 min Q&amp;A) in Gallery Hall.</p>
+            </div>
+            <span class="timeline-time-badge">10:00 AM (DAY 2)</span>
+          </div>
+        </div>
+
+        <div class="timeline-node">
+          <div class="timeline-dot"></div>
+          <div class="timeline-node-card">
+            <div class="timeline-info">
+              <h4>Awards Ceremony &amp; Valedictory</h4>
+              <p>Winner announcements, ₹10,000 prize distribution, and wrap-up.</p>
+            </div>
+            <span class="timeline-time-badge">11:00 AM (DAY 2)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBMISSION SECTION (LAST SECTION AS REQUESTED: SIMPLE BUTTON REDIRECT) -->
+  <section id="submit" class="section-padding">
+    <div class="container submission-layout">
+
+      <div class="hud-header" style="text-align: center; margin-bottom: 1rem;">
+        <span class="hud-tag">
+          <span class="blink"></span>
+          <span>// PROJECT SUBMISSION</span>
+        </span>
+        <h2 class="section-title" style="justify-content: center;">
+          <span>SUBMIT YOUR</span> <span class="cyan-text">PROJECT</span>
+        </h2>
+        <p class="section-desc" style="margin: 0.5rem auto 0 auto;">
+          Ready to submit? Click the button below to open the official submission form.
+        </p>
+      </div>
+
+      <!-- Clean Redirect Card -->
+      <div class="submission-redirect-card">
+        <svg class="submit-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 2L11 13"></path>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+
+        <h3 class="submit-card-title">Ready to Submit?</h3>
+        <p class="submit-card-desc">
+          Make sure your team's GitHub repository is public and includes your one-page technical write-up before
+          submitting.
+        </p>
+
+        <a href="https://forms.gle/throttle-buildout-submission" target="_blank" rel="noopener noreferrer"
+          class="btn-primary-cyan btn-large-submit" id="main-submit-btn">
+          <span>SUBMIT YOUR PROJECT</span>
+          <span>↗</span>
+        </a>
+
+        <p class="submit-card-note">
+          <strong>Deadline: September 12, 09:30 AM IST.</strong> Late submissions will not be accepted.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HACKER FAQ -->
+  <section id="faq" class="section-padding">
+    <div class="container">
+      <div class="hud-header">
+        <span class="hud-tag">
+          <span class="blink"></span>
+          <span>// FAQ</span>
+        </span>
+        <h2 class="section-title">
+          <span>FREQUENTLY ASKED</span> <span class="cyan-text">QUESTIONS</span>
+        </h2>
+        <p class="section-desc">
+          Quick answers to operational questions during the hackathon.
+        </p>
+      </div>
+
+      <div class="faq-accordion-wrap">
+        <div class="faq-item">
+          <button class="faq-question-btn">
+            <span>01 // What are the Wi-Fi credentials for Gallery Hall?</span>
+            <svg class="faq-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="faq-answer-content">
+            <p>Connect to the designated network provided on your team desk ID card. If you encounter any connection
+              issues, contact a volunteer in the hall immediately.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question-btn">
+            <span>02 // Can our team update our project links before the deadline?</span>
+            <svg class="faq-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="faq-answer-content">
+            <p>Yes, you can edit your submission via the submission form link anytime before <strong>09:30 AM, Sep
+                12</strong>. Git commits pushed after 09:30 AM will not be considered.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question-btn">
+            <span>03 // What if our live deployment has issues right before judging?</span>
+            <svg class="faq-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="faq-answer-content">
+            <p>You are allowed to demonstrate your working prototype locally on your own machine. Ensure your public
+              GitHub repo has commits stamped before the 09:30 AM cutoff.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question-btn">
+            <span>04 // How long is each team's demo presentation?</span>
+            <svg class="faq-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="faq-answer-content">
+            <p>Each team receives <strong>5 minutes total</strong>: 3 minutes for the live demo and 2 minutes for judge
+              Q&amp;A. Demos must run on your own machine; pre-recorded video submissions are not accepted.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question-btn">
+            <span>05 // Who can we contact for mentor assistance or emergencies?</span>
+            <svg class="faq-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="faq-answer-content">
+            <p>Reach out to the Hack Club RSET organizers at the front desk of Gallery Hall or call <strong>+91 94473
+                05837</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Statement Specification Modal -->
+  <div id="spec-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-content-box">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <span class="modal-ps-code" id="modal-ps-code">Problem Details</span>
+          <h3 class="modal-title" id="modal-title">Title</h3>
+        </div>
+        <button class="modal-close-btn" id="modal-close-btn" aria-label="Close Modal">✕</button>
+      </div>
+
+      <div class="modal-body" id="modal-body-content">
+        <!-- Content dynamically injected from PS.pdf -->
+      </div>
+
+      <div class="modal-footer-actions">
+        <button class="btn-secondary-cyan" onclick="closeProblemModal()">
+          <span>CLOSE</span>
+        </button>
+        <button class="btn-primary-cyan" id="modal-submit-target-btn">
+          <span>SUBMIT FOR THIS PROBLEM</span>
+          <span>→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Operational Footer -->
+  <footer class="portal-footer">
+    <div class="container footer-inner">
+      <div class="footer-branding-block">
+        <img src="assets/logo/hack club logo.png" alt="Hack Club RSET" class="footer-logo">
+        <span class="footer-divider-slash">//</span>
+        <img src="assets/logo/rset logo.png" alt="RSET" class="footer-logo">
+        <div class="footer-meta-text">
+          <span class="footer-title">HACK CLUB RSET &times; RSET</span>
+          <span class="footer-sub">Rajagiri School of Engineering &amp; Technology</span>
+        </div>
+      </div>
+
+      <div class="footer-center-status">
+        <div class="footer-status-pill">
+          <span class="live-beacon"></span>
+          <span>THROTTLE '26 // BUILD//OUT</span>
+        </div>
+        <p class="footer-copy">&copy; 2026 Hack Club RSET. All rights reserved.</p>
+      </div>
+
+      <div class="footer-nav-links">
+        <a href="#hero" class="footer-link-btn">Back to Top ↑</a>
+        <a href="../main-site/index.html" class="footer-link-btn" title="Main THROTTLE Site">Main Site ↗</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
